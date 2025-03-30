@@ -2,9 +2,9 @@
 
 ## Team members
 
-- Jacopo Zanetti
+- [Jacopo Zanetti](https://jacza.net/github)
 - Enerel Tumurkhuu
-- Gabriel Concepcion @G-Concept999
+- [Gabriel Concepcion](https://github.com/g-concept999)
 
 ## Topic
 
