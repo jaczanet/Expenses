@@ -4,7 +4,7 @@
 
 - Jacopo Zanetti
 - Enerel Tumurkhuu
-- Gabriel Concepcion
+- Gabriel Concepcion @G-Concept999
 
 ## Topic
 
