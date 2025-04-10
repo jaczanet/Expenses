@@ -1,8 +1,15 @@
 package net.jacza.expenses.data.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
+import net.jacza.expenses.data.interfaces.Identifiable;
 
-public class Transaction {
+/*
+ * Data class wrapping transaction data.
+ */
+public class Transaction implements Identifiable {
+
+    private final UUID ID;
 
     private LocalDate date;
     private Double amount;
@@ -11,10 +18,16 @@ public class Transaction {
     private Account account;
 
     public Transaction(LocalDate date, Double amount, String note, Category category, Account account) {
+        this.ID = UUID.randomUUID();
         this.date = date;
         this.amount = amount;
         this.note = note;
         this.category = category;
         this.account = account;
+    }
+
+    @Override
+    public UUID getID() {
+        return ID;
     }
 }
