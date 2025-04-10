@@ -1,4 +1,4 @@
-package net.jacza.expenses.data.interfaces;
+package net.jacza.expenses.data.csv;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
- * Abstract class providing methods for writing and reading a list of strings to and from a
- * txt-compatible file.
+ * Abstract class providing methods for writing and reading a list of strings to and from a txt-compatible file.
  */
 abstract class TextFileHandler {
 
