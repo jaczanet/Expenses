@@ -30,4 +30,24 @@ public class Transaction implements Identifiable {
     public UUID getID() {
         return ID;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
 }
