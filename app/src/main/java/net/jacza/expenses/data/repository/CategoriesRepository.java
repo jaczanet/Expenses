@@ -53,7 +53,7 @@ public class CategoriesRepository implements Repository<Category> {
     private void write(ArrayList<Category> categories) {
         var rawCategories = new ArrayList<RawCategory>();
         for (Category category : categories) {
-            rawCategories.add(new RawCategory(category));
+            rawCategories.add(new RawCategory(category.getID(), category.getName()));
         }
         rawCategoriesSource.save(rawCategories);
     }
@@ -66,6 +66,8 @@ class RawCategoriesSource extends TextFileHandler implements DataSource<RawCateg
 
     private static final String FILE_NAME = "categories.csv";
 
+    private static final String DELIMITER = ";";
+
     public RawCategoriesSource(Context context) {
         super(new File(context.getFilesDir(), FILE_NAME));
     }
@@ -75,7 +77,7 @@ class RawCategoriesSource extends TextFileHandler implements DataSource<RawCateg
         var rawCategories = new ArrayList<RawCategory>();
         var lines = super.readLines();
         for (String line : lines) {
-            rawCategories.add(new RawCategory(line));
+            rawCategories.add(parse(line));
         }
         return rawCategories;
     }
@@ -84,9 +86,20 @@ class RawCategoriesSource extends TextFileHandler implements DataSource<RawCateg
     public void save(ArrayList<RawCategory> rawCategories) {
         var lines = new ArrayList<String>();
         for (RawCategory rawCategory : rawCategories) {
-            lines.add(rawCategories.toString());
+            lines.add(serialize(rawCategory));
         }
         super.writeLines(lines);
+    }
+
+    private String serialize(RawCategory object) {
+        return String.format("%s" + DELIMITER + "%s", object.getID().toString(), object.getNAME());
+    }
+
+    private RawCategory parse(String line) {
+        var fields = line.split(DELIMITER);
+        UUID ID = UUID.fromString(fields[0]);
+        String NAME = fields[1];
+        return new RawCategory(ID, NAME);
     }
 }
 
@@ -98,20 +111,9 @@ class RawCategory {
     private final UUID ID;
     private final String NAME;
 
-    public RawCategory(Category category) {
-        this.ID = category.getID();
-        this.NAME = category.getName();
-    }
-
-    public RawCategory(String string) {
-        var fields = string.split(";");
-        this.ID = UUID.fromString(fields[0]);
-        this.NAME = fields[1];
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s;%s", ID.toString(), NAME);
+    public RawCategory(UUID ID, String NAME) {
+        this.ID = ID;
+        this.NAME = NAME;
     }
 
     public UUID getID() {
