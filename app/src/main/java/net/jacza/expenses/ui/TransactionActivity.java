@@ -10,13 +10,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import net.jacza.expenses.R;
 
-public class NewTransactionActivity extends AppCompatActivity {
+public class TransactionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_new_transaction);
+        setContentView(R.layout.activity_transaction);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
