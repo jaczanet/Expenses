@@ -5,5 +5,8 @@
     <string name="accounts_title">Accounts</string>
     <string name="select_account">Select Account</string>
     <string name="enter_note">Enter note</string>
-
+    <string name="stats">Statistics</string>
+    <string name="content_description_stats">View statistics</string>
+    <string name="content_description_favorite">View settings</string>
+    <string name="settings">Settings</string>
 </resources>
