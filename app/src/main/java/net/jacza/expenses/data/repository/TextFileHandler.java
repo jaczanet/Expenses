@@ -1,4 +1,4 @@
-package net.jacza.expenses.data.csv;
+package net.jacza.expenses.data.repository;
 
 import java.io.File;
 import java.io.FileWriter;
