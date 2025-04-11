@@ -1,4 +1,4 @@
-package net.jacza.expenses.data.repository;
+package net.jacza.expenses.data.base;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 /*
  * Abstract class providing methods for writing and reading a list of strings to and from a txt-compatible file.
  */
-abstract class TextFileHandler {
+public abstract class TextFileHandler {
 
     private final File FILE_HANDLE;
 

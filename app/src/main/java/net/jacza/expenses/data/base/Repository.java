@@ -1,4 +1,4 @@
-package net.jacza.expenses.data.interfaces;
+package net.jacza.expenses.data.base;
 
 import java.util.ArrayList;
 
