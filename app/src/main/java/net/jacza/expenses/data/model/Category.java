@@ -1,7 +1,7 @@
 package net.jacza.expenses.data.model;
 
 import java.util.UUID;
-import net.jacza.expenses.data.interfaces.Identifiable;
+import net.jacza.expenses.data.base.Identifiable;
 
 /*
  * // TODO JacaDOC
