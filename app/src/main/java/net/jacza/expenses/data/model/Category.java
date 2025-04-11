@@ -12,7 +12,7 @@ public class Category implements Identifiable {
     private String name;
 
     public Category(UUID ID, String name) {
-        this.ID = UUID.randomUUID();
+        this.ID = ID;
         this.name = name;
     }
 
