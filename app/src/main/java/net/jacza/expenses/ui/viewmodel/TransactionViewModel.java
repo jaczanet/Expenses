@@ -1,6 +1,7 @@
 package net.jacza.expenses.ui.viewmodel;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -19,10 +20,11 @@ public class TransactionViewModel extends AndroidViewModel {
     private final LiveData<TransactionUiState> uiState = _uiState;
 
     private TransactionsRepository repo;
+    private Context context;
 
-    public TransactionViewModel(@NonNull Application application) {
+    public TransactionViewModel(@NonNull Application application, Context context) {
         super(application);
-        repo = new TransactionsRepository();
+        repo = new TransactionsRepository(context);
         loadTransactions(); // Load on init
     }
 
