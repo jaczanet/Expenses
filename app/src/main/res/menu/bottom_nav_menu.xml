@@ -6,12 +6,12 @@
         android:title="@string/transactions_title" />
 
     <item
-        android:id="@+id/search"
+        android:id="@+id/categories"
         android:icon="@drawable/ic_categories"
         android:title="@string/categories_title"/>
 
     <item
-        android:id="@+id/favorites"
+        android:id="@+id/accounts"
         android:icon="@drawable/ic_accounts"
         android:title="@string/accounts_title" />
 </menu>
