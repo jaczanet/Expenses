@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/transactions"
+        android:icon="@drawable/ic_transactions"
+        android:title="@string/transactions_title" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_categories"
+        android:title="@string/categories_title"/>
+
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_accounts"
+        android:title="@string/accounts_title" />
+</menu>
