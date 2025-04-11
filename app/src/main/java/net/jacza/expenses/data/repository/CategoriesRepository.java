@@ -4,8 +4,9 @@ import android.content.Context;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
-import net.jacza.expenses.data.interfaces.DataSource;
-import net.jacza.expenses.data.interfaces.Repository;
+import net.jacza.expenses.data.base.DataSource;
+import net.jacza.expenses.data.base.Repository;
+import net.jacza.expenses.data.base.TextFileHandler;
 import net.jacza.expenses.data.model.Category;
 
 /*

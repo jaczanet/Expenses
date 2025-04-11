@@ -2,7 +2,7 @@ package net.jacza.expenses.data.model;
 
 import java.time.LocalDate;
 import java.util.UUID;
-import net.jacza.expenses.data.interfaces.Identifiable;
+import net.jacza.expenses.data.base.Identifiable;
 
 /*
  * Data class wrapping transaction data.
