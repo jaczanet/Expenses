@@ -4,7 +4,7 @@ import java.util.UUID;
 import net.jacza.expenses.data.base.Identifiable;
 
 /*
- * // TODO JacaDOC
+ * // TODO JavaDOC
  */
 public class Category implements Identifiable {
 

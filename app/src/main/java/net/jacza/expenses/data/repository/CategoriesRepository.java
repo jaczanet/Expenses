@@ -10,7 +10,7 @@ import net.jacza.expenses.data.base.TextFileHandler;
 import net.jacza.expenses.data.model.Category;
 
 /*
- * // TODO JacaDOC
+ * // TODO JavaDOC
  */
 public class CategoriesRepository implements Repository<Category> {
 
@@ -61,7 +61,7 @@ public class CategoriesRepository implements Repository<Category> {
 }
 
 /*
- * // TODO JacaDOC
+ * // TODO JavaDOC
  */
 class RawCategoriesSource extends TextFileHandler implements DataSource<RawCategory> {
 
@@ -105,7 +105,7 @@ class RawCategoriesSource extends TextFileHandler implements DataSource<RawCateg
 }
 
 /*
- * // TODO JacaDOC
+ * // TODO JavaDOC
  */
 class RawCategory {
 
