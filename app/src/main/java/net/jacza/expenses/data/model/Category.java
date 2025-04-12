@@ -1,12 +1,13 @@
 package net.jacza.expenses.data.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 import net.jacza.expenses.data.base.Identifiable;
 
 /*
  * // TODO JavaDOC
  */
-public class Category implements Identifiable {
+public class Category implements Identifiable, Serializable {
 
     private final UUID ID;
     private String name;
