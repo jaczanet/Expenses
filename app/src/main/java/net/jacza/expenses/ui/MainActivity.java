@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.color.DynamicColors;
 
 import net.jacza.expenses.R;
 import net.jacza.expenses.ui.fragment.AccountFragment;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupEdgeToEdge();
+        DynamicColors.applyToActivityIfAvailable(this);
         initViews();
         setupBottomNavigation();
         setDefaultFragment();
