@@ -2,16 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/transactions"
+        android:enabled="true"
         android:icon="@drawable/ic_transactions"
         android:title="@string/transactions_title" />
 
     <item
         android:id="@+id/categories"
+        android:enabled="true"
         android:icon="@drawable/ic_categories"
         android:title="@string/categories_title"/>
 
     <item
         android:id="@+id/accounts"
+        android:enabled="true"
         android:icon="@drawable/ic_accounts"
         android:title="@string/accounts_title" />
 </menu>
