@@ -30,15 +30,6 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
-
-        // Set up the add category button
-        rootView.findViewById(R.id.addCategoryBtn).setOnClickListener(v -> {
-            // Create an Intent to open another activity
-            Intent intent = new Intent(getActivity(), CategoryActivity.class);
-            intent.putExtra("MODE", "ADD");
-            startActivity(intent);
-        });
-
         return rootView;
     }
 
@@ -46,20 +37,29 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        view.findViewById(R.id.addCategoryBtn).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            intent.putExtra("MODE", "ADD");
+            startActivity(intent);
+        });
+
         recyclerView = view.findViewById(R.id.categoryFragRecyclerView);
 
-        // Create FlexboxLayoutManager and configure it
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
 
+        repo = new CategoriesRepository(getContext());
         recyclerView.setLayoutManager(layoutManager);
-
-        // Set adapter
-        repo = new CategoriesRepository(getActivity());
-        adapter = new CategoryAdapter(repo.read(), repo);
+        adapter = new CategoryAdapter((repo.read()), repo);
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.setList(repo.read());
+        adapter.notifyDataSetChanged();
+    }
 }
