@@ -1,5 +1,6 @@
 package net.jacza.expenses.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.jacza.expenses.R;
+import net.jacza.expenses.ui.TransactionActivity;
 import net.jacza.expenses.ui.adapter.TransactionAdapter;
 
 public class TransactionFragment extends Fragment {
@@ -25,6 +27,13 @@ public class TransactionFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new TransactionAdapter();
         recyclerView.setAdapter(adapter);
+
+        // Set up the add transaction button
+        rootView.findViewById(R.id.addTransactionBtn).setOnClickListener(v -> {
+            // Create an Intent to open another activity
+            Intent intent = new Intent(getActivity(), TransactionActivity.class);
+            startActivity(intent);
+        });
 
         return rootView;
     }
