@@ -1,4 +1,4 @@
-package net.jacza.expenses.ui;
+package net.jacza.expenses.ui.activity;
 
 import android.os.Bundle;
 

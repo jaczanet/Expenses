@@ -13,13 +13,13 @@
         android:theme="@style/Theme.Expenses"
         tools:targetApi="31">
         <activity
-            android:name=".ui.AccountActivity"
+            android:name=".ui.activity.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.CategoryActivity"
+            android:name=".ui.activity.CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.TransactionActivity"
+            android:name=".ui.activity.TransactionActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

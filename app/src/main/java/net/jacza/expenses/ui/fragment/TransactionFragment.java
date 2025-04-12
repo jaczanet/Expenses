@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.jacza.expenses.R;
-import net.jacza.expenses.ui.TransactionActivity;
+import net.jacza.expenses.ui.activity.TransactionActivity;
 import net.jacza.expenses.ui.adapter.TransactionAdapter;
 
 public class TransactionFragment extends Fragment {

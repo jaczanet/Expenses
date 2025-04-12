@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.jacza.expenses.R;
-import net.jacza.expenses.ui.TransactionActivity;
+import net.jacza.expenses.ui.activity.TransactionActivity;
 
 public class CategoryFragment extends Fragment {
     private RecyclerView recyclerView;

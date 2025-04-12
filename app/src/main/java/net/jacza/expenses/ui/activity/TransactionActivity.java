@@ -1,7 +1,6 @@
-package net.jacza.expenses.ui;
+package net.jacza.expenses.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
