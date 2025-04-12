@@ -9,4 +9,10 @@
     <string name="content_description_stats">View statistics</string>
     <string name="content_description_favorite">View settings</string>
     <string name="settings">Settings</string>
+    <string name="enter_categ_name">Enter Category Name</string>
+    <string name="currency_symbol_euro">€ </string>
+    <string name="currency_symbol_dollar">$ </string>
+    <string name="currency_symbol_pound">£ </string>
+    <string name="currency_symbol_yen">¥ </string>
+    <string name="currency_symbol_rupee">₹ </string>
 </resources>
