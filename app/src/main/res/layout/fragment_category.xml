@@ -6,11 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoriesRecyclerView"
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/categoryFragFlexboxLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:flexWrap="wrap">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryFragRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.flexbox.FlexboxLayout>
     <Button
         android:id="@+id/addCategoryBtn"
         android:layout_width="90dp"
