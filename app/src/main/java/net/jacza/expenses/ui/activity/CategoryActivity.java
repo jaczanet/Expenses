@@ -57,13 +57,13 @@ public class CategoryActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(v -> {
             String name = editTextCategoryName.getText().toString().trim();
             if (name.isEmpty()) {
-                name = "Unnamed Category";
+                name = "N/A";
             }
 
             if ("EDIT".equals(mode) && categoryToEdit != null) {
                 categoryToEdit.setName(name);
                 viewModel.update(categoryToEdit);
-            } else if ("ADD".equals(mode)) {
+            } else if ("ADD".equals(mode) && categoryToEdit != null) {
                 Category newCategory = new Category(name);
                 viewModel.create(newCategory);
             }
