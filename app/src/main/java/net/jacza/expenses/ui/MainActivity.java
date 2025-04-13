@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentFragment = fragment;
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.linearLayout, fragment)
+                .replace(R.id.fragmentsContainer, fragment)
                 .commit();
     }
 
