@@ -70,7 +70,7 @@ public class CategoryActivity extends AppCompatActivity {
         if ("EDIT".equals(mode) && categoryToEdit != null) {
             categoryToEdit.setName(name);
             viewModel.update(categoryToEdit);
-        } else if ("ADD".equals(mode) && categoryToEdit != null) {
+        } else if ("ADD".equals(mode)) {
             Category newCategory = new Category(name);
             viewModel.create(newCategory);
         }
