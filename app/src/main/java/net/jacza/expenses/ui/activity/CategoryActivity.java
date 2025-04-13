@@ -46,6 +46,7 @@ public class CategoryActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String mode = intent.getStringExtra("MODE");
 
+        // Set up UI based on intent data
         if ("EDIT".equals(mode)) {
             categoryToEdit = (Category) intent.getSerializableExtra("CATEGORY TO EDIT");
             if (categoryToEdit != null) {
@@ -53,6 +54,7 @@ public class CategoryActivity extends AppCompatActivity {
             }
         }
 
+        // Set up save and close button click listeners
         saveBtn.setOnClickListener(v -> saveChanges(mode));
         closeBtn.setOnClickListener(v -> finish());
     }
