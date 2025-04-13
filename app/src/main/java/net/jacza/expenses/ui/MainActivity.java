@@ -1,7 +1,6 @@
 package net.jacza.expenses.ui;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private CategoryFragment categoryFragment;
     private AccountFragment accountFragment;
     private Fragment currentFragment;
-    MaterialToolbar topAppBar;
+    private MaterialToolbar topAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
