@@ -53,8 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="18"
-        android:inputType="text"
         android:hint="Enter Category Name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvActivityEvent" />
 
