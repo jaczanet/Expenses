@@ -27,8 +27,8 @@
 
     <Button
         android:id="@+id/addCategoryBtn"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
         android:insetLeft="0dp"
