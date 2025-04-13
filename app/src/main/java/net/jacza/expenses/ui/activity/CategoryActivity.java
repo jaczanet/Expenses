@@ -19,7 +19,6 @@ import net.jacza.expenses.ui.viewmodel.CategoryViewModel;
 public class CategoryActivity extends AppCompatActivity {
 
     private EditText editTextCategoryName;
-    private Button saveBtn, closeBtn;
     private CategoryViewModel viewModel;
 
     private Category categoryToEdit = null;
@@ -40,8 +39,8 @@ public class CategoryActivity extends AppCompatActivity {
 
         // Bind UI elements
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
-        closeBtn = findViewById(R.id.closeBtn);
-        saveBtn = findViewById(R.id.saveBtn);
+        Button closeBtn = findViewById(R.id.closeBtn);
+        Button saveBtn = findViewById(R.id.saveBtn);
 
         // Get intent data
         Intent intent = getIntent();
@@ -54,22 +53,25 @@ public class CategoryActivity extends AppCompatActivity {
             }
         }
 
-        saveBtn.setOnClickListener(v -> {
-            String name = editTextCategoryName.getText().toString().trim();
-            if (name.isEmpty()) {
-                name = "N/A";
-            }
-
-            if ("EDIT".equals(mode) && categoryToEdit != null) {
-                categoryToEdit.setName(name);
-                viewModel.update(categoryToEdit);
-            } else if ("ADD".equals(mode) && categoryToEdit != null) {
-                Category newCategory = new Category(name);
-                viewModel.create(newCategory);
-            }
-            finish();
-        });
-
+        saveBtn.setOnClickListener(v -> saveChanges(mode));
         closeBtn.setOnClickListener(v -> finish());
+    }
+
+
+
+    void saveChanges(String mode) {
+        String name = editTextCategoryName.getText().toString().trim();
+        if (name.isEmpty()) {
+            name = "N/A";
+        }
+
+        if ("EDIT".equals(mode) && categoryToEdit != null) {
+            categoryToEdit.setName(name);
+            viewModel.update(categoryToEdit);
+        } else if ("ADD".equals(mode) && categoryToEdit != null) {
+            Category newCategory = new Category(name);
+            viewModel.create(newCategory);
+        }
+        finish();
     }
 }
