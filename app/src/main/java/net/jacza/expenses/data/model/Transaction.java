@@ -21,11 +21,24 @@ public class Transaction implements Identifiable, Serializable {
 
     // constructors
 
-    public Transaction(LocalDate date, double amount, String note, Category category, Account account) {
+    public Transaction(
+        LocalDate date,
+        double amount,
+        String note,
+        Category category,
+        Account account
+    ) {
         this(UUID.randomUUID(), date, amount, note, category, account);
     }
 
-    public Transaction(UUID ID, LocalDate date, double amount, String note, Category category, Account account) {
+    public Transaction(
+        UUID ID,
+        LocalDate date,
+        double amount,
+        String note,
+        Category category,
+        Account account
+    ) {
         this.ID = ID;
         this.date = date != null ? date : LocalDate.now();
         this.amount = amount;

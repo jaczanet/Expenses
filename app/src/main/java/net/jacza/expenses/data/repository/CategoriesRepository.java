@@ -8,6 +8,7 @@ import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.base.TextFileHandler;
 import net.jacza.expenses.data.model.Category;
+import net.jacza.expenses.data.raw.RawCategory;
 
 /*
  * // TODO JavaDOC
@@ -101,27 +102,5 @@ class RawCategoriesSource extends TextFileHandler implements DataSource<RawCateg
         UUID ID = UUID.fromString(fields[0]);
         String NAME = fields[1];
         return new RawCategory(ID, NAME);
-    }
-}
-
-/*
- * // TODO JavaDOC
- */
-class RawCategory {
-
-    private final UUID ID;
-    private final String NAME;
-
-    public RawCategory(UUID ID, String NAME) {
-        this.ID = ID;
-        this.NAME = NAME;
-    }
-
-    public UUID getID() {
-        return ID;
-    }
-
-    public String getNAME() {
-        return NAME;
     }
 }
