@@ -1,14 +1,12 @@
 package net.jacza.expenses.data.repository;
 
 import android.content.Context;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.UUID;
 import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.base.Repository;
-import net.jacza.expenses.data.base.TextFileHandler;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.raw.RawCategory;
+import net.jacza.expenses.data.source.RawCategoriesDataSource;
 
 /*
  * // TODO JavaDOC
@@ -18,7 +16,7 @@ public class CategoriesRepository implements Repository<Category> {
     private DataSource<RawCategory> rawCategoriesSource;
 
     public CategoriesRepository(Context context) {
-        this.rawCategoriesSource = new RawCategoriesSource(context);
+        this.rawCategoriesSource = new RawCategoriesDataSource(context);
     }
 
     @Override
@@ -55,52 +53,8 @@ public class CategoriesRepository implements Repository<Category> {
     private void write(ArrayList<Category> categories) {
         var rawCategories = new ArrayList<RawCategory>();
         for (Category category : categories) {
-            rawCategories.add(new RawCategory(category.getID(), category.getName()));
+            rawCategories.add(RawCategory.fromCategory(category));
         }
         rawCategoriesSource.save(rawCategories);
-    }
-}
-
-/*
- * // TODO JavaDOC
- */
-class RawCategoriesSource extends TextFileHandler implements DataSource<RawCategory> {
-
-    private static final String FILE_NAME = "categories.csv";
-
-    private static final String DELIMITER = ";";
-
-    public RawCategoriesSource(Context context) {
-        super(new File(context.getFilesDir(), FILE_NAME));
-    }
-
-    @Override
-    public ArrayList<RawCategory> load() {
-        var rawCategories = new ArrayList<RawCategory>();
-        var lines = super.readLines();
-        for (String line : lines) {
-            rawCategories.add(parse(line));
-        }
-        return rawCategories;
-    }
-
-    @Override
-    public void save(ArrayList<RawCategory> rawCategories) {
-        var lines = new ArrayList<String>();
-        for (RawCategory rawCategory : rawCategories) {
-            lines.add(serialize(rawCategory));
-        }
-        super.writeLines(lines);
-    }
-
-    private String serialize(RawCategory object) {
-        return String.format("%s" + DELIMITER + "%s", object.getID().toString(), object.getNAME());
-    }
-
-    private RawCategory parse(String line) {
-        var fields = line.split(DELIMITER);
-        UUID ID = UUID.fromString(fields[0]);
-        String NAME = fields[1];
-        return new RawCategory(ID, NAME);
     }
 }
