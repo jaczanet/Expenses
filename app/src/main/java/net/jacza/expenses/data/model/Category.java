@@ -5,22 +5,27 @@ import java.util.UUID;
 import net.jacza.expenses.data.base.Identifiable;
 
 /*
- * // TODO JavaDOC
+ * Data class wrapping category data.
  */
 public class Category implements Identifiable, Serializable {
+
+    // attributes
 
     private final UUID ID;
     private String name;
 
-    public Category(UUID ID, String name) {
-        this.ID = ID;
-        this.name = name;
-    }
+    // constructors
 
     public Category(String name) {
-        this.ID = UUID.randomUUID();
-        this.name = name;
+        this(UUID.randomUUID(), name);
     }
+
+    public Category(UUID ID, String name) {
+        this.ID = ID;
+        this.name = name != null ? name : "Category";
+    }
+
+    // getters
 
     @Override
     public UUID getID() {
@@ -31,7 +36,9 @@ public class Category implements Identifiable, Serializable {
         return name;
     }
 
-    public void setName(String name){
+    // setters
+
+    public void setName(String name) {
         this.name = name;
     }
 }

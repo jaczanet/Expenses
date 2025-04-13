@@ -1,26 +1,35 @@
 package net.jacza.expenses.data.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.UUID;
 import net.jacza.expenses.data.base.Identifiable;
 
 /*
  * Data class wrapping account data.
  */
-public class Account implements Identifiable {
+public class Account implements Identifiable, Serializable {
+
+    // attributes
 
     private final UUID ID;
-
     private String name;
-    private Double initialBalance;
-    private ArrayList<Transaction> transactions;
+    private double initialBalance;
+    private double balance;
 
-    public Account(String name, Double initialBalance) {
-        this.ID = UUID.randomUUID();
-        this.name = name;
-        this.initialBalance = initialBalance;
-        this.transactions = new ArrayList<>();
+    // constructors
+
+    public Account(String name, double initialBalance) {
+        this(UUID.randomUUID(), name, initialBalance);
     }
+
+    public Account(UUID ID, String name, double initialBalance) {
+        this.ID = ID;
+        this.name = name != null ? name : "Account";
+        this.initialBalance = initialBalance;
+        this.balance = 0.0;
+    }
+
+    // getters
 
     @Override
     public UUID getID() {
@@ -31,19 +40,27 @@ public class Account implements Identifiable {
         return name;
     }
 
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
+    public double getInitialBalance() {
+        return initialBalance;
     }
 
-    public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
+    public double getBalance() {
+        return balance;
     }
 
-    public Double getBalance() {
-        Double sum = initialBalance;
-        for (Transaction transaction : transactions) {
-            sum += transaction.getAmount();
-        }
-        return sum;
+    // setters
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setInitialBalance(double initialBalance) {
+        this.initialBalance = initialBalance;
+    }
+
+    // methods
+
+    public void updateBalance(double amount) {
+        balance += amount;
     }
 }
