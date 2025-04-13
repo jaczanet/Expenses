@@ -1,6 +1,7 @@
 package net.jacza.expenses.ui;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.color.DynamicColors;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private CategoryFragment categoryFragment;
     private AccountFragment accountFragment;
     private Fragment currentFragment;
+    MaterialToolbar topAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setTitle("Transactions");
     }
 
     private void setupBottomNavigation() {
@@ -56,12 +61,15 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.transactions && !(currentFragment instanceof TransactionFragment)) {
+                topAppBar.setTitle("Transactions");
                 loadFragment(getTransactionFragment());
                 return true;
             } else if (itemId == R.id.categories && !(currentFragment instanceof CategoryFragment)) {
+                topAppBar.setTitle("Categories");
                 loadFragment(getCategoryFragment());
                 return true;
             } else if (itemId == R.id.accounts && !(currentFragment instanceof AccountFragment)) {
+                topAppBar.setTitle("Accounts");
                 loadFragment(getAccountFragment());
                 return true;
             }
