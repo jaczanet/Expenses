@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import net.jacza.expenses.ui.viewmodel.CategoryViewModel;
 public class CategoryActivity extends AppCompatActivity {
 
     private EditText editTextCategoryName;
+    private TextView tvActivityEvent;
     private CategoryViewModel viewModel;
 
     private Category categoryToEdit = null;
@@ -38,6 +40,7 @@ public class CategoryActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
         // Bind UI elements
+        tvActivityEvent = findViewById(R.id.tvActivityEvent);
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
         Button closeBtn = findViewById(R.id.closeBtn);
         Button saveBtn = findViewById(R.id.saveBtn);
@@ -48,10 +51,13 @@ public class CategoryActivity extends AppCompatActivity {
 
         // Set up UI based on intent data
         if ("EDIT".equals(mode)) {
+            tvActivityEvent.setText("Edit Category");
             categoryToEdit = (Category) intent.getSerializableExtra("CATEGORY TO EDIT");
             if (categoryToEdit != null) {
                 editTextCategoryName.setText(categoryToEdit.getName());
             }
+        } else if ("ADD".equals(mode)){
+            tvActivityEvent.setText("Add New Category");
         }
 
         // Set up save and close button click listeners
