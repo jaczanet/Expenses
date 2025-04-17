@@ -43,7 +43,6 @@
         android:text="event_text"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/md_theme_onSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttons" />
@@ -56,7 +55,6 @@
         android:ems="18"
         android:hint="Enter Category Name"
         android:inputType="text"
-        android:textColor="@color/md_theme_onSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvActivityEvent" />
