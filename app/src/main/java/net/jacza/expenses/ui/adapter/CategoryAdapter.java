@@ -48,7 +48,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.menu_edit) {
                     Intent intent = new Intent(view.getContext(), CategoryActivity.class);
-                    intent.putExtra("MODE", SaveBtnModes.Modes.EDIT);
+                    intent.putExtra("MODE", "EDIT");
                     intent.putExtra("CATEGORY TO EDIT", category);
                     view.getContext().startActivity(intent);
                     return true;
