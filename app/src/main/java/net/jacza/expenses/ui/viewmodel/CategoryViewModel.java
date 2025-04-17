@@ -9,19 +9,13 @@ import net.jacza.expenses.data.repository.CategoriesRepository;
 public class CategoryViewModel extends ViewModel {
 
     private final Repository<Category> repo = CategoriesRepository.getInstance();
-
     public void create(Category category) {
         repo.create(category);
     }
-
     public void delete(Category category) {
         repo.delete(category);
     }
-
-    public ArrayList<Category> read() {
-        return repo.read();
-    }
-
+    public ArrayList<Category> read() {return repo.read();}
     public void update(Category category) {
         repo.update(category);
     }

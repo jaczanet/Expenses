@@ -42,13 +42,11 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view
-            .findViewById(R.id.addCategoryBtn)
-            .setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                intent.putExtra("MODE", SaveBtnModes.ADD);
-                startActivity(intent);
-            });
+        view.findViewById(R.id.addCategoryBtn).setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+            intent.putExtra("MODE", SaveBtnModes.ADD);
+            startActivity(intent);
+        });
 
         recyclerView = view.findViewById(R.id.categoryFragRecyclerView);
 
@@ -58,8 +56,8 @@ public class CategoryFragment extends Fragment {
         layoutManager.setFlexWrap(FlexWrap.WRAP);
 
         repo = CategoriesRepository.getInstance();
-        recyclerView.setLayoutManager(layoutManager);
         adapter = new CategoryAdapter((repo.read()), repo);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 

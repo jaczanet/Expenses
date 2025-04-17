@@ -20,12 +20,12 @@ import net.jacza.expenses.ui.util.SaveBtnModes;
 
 
 public class CategoryActivity extends AppCompatActivity {
-
+    Button saveBtn, closeBtn;
     private EditText editTextCategoryName;
     private TextView tvActivityEvent;
     private CategoryViewModel viewModel;
 
-    private Category categoryToEdit = null;
+    private Category categoryToEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +44,8 @@ public class CategoryActivity extends AppCompatActivity {
         // Bind UI elements
         tvActivityEvent = findViewById(R.id.tvActivityEvent);
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
-        Button closeBtn = findViewById(R.id.closeBtn);
-        Button saveBtn = findViewById(R.id.saveBtn);
+        closeBtn = findViewById(R.id.closeBtn);
+        saveBtn = findViewById(R.id.saveBtn);
 
         SaveBtnModes mode = (SaveBtnModes) getIntent().getSerializableExtra("MODE");
         setActivityTextFields(mode, getIntent());
