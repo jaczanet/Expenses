@@ -85,7 +85,7 @@ public class AccountActivity extends AppCompatActivity {
 //            } else if (mode == SaveBtnModes.ADD && accountToEdit != null) {
 //                Account newAccount = new Account(name, balance);
 //                viewModel.create(newAccount);
-//            }
-//            finish(); TODO uncomment after implementing AccountsRepository
+//            } TODO uncomment after implementing AccountsRepository
+           finish();
     }
 }
