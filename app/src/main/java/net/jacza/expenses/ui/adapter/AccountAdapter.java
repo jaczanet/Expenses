@@ -100,7 +100,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         public AccountViewHolder(@NonNull View itemView) {
             super(itemView);
             accountName = itemView.findViewById(R.id.textViewAccountName);
-            accountBalance = itemView.findViewById(R.id.textViewInitialBalance);
+            accountBalance = itemView.findViewById(R.id.textViewBalance);
             menuButton = itemView.findViewById(R.id.iconAccountMenu);
         }
 
