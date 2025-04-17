@@ -32,6 +32,8 @@ public class TransactionActivity extends AppCompatActivity {
     TextInputLayout selectAccountMenu;
     LinearLayout NoteDateLinearLayout;
 
+    private Long selectedDateMillis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +42,15 @@ public class TransactionActivity extends AppCompatActivity {
         // Initialize UI components
         initUi();
 
-        // Set up the close button
-        closeBtn.setOnClickListener(v -> finish());
+        selectDateBtn.setOnClickListener(v -> showDatePicker());
+        long finalDate = getValidDateInMillis();
 
-        // Set up the save button
+        // Set up the save and close button
+        closeBtn.setOnClickListener(v -> finish());
         saveBtn.setOnClickListener(v -> {
-            // Save the changes
             saveChanges();
             finish();
         });
-
-        selectDateBtn.setOnClickListener(v -> showDatePicker());
-
     }
 
     private void setupEdgeToEdge() {
@@ -71,12 +70,17 @@ public class TransactionActivity extends AppCompatActivity {
                 .build();
 
         datePicker.addOnPositiveButtonClickListener(selection -> {
-            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date(selection));
+            selectedDateMillis = selection;
         });
 
         datePicker.show(getSupportFragmentManager(), "date_picker");
     }
 
+    private Long getValidDateInMillis(){
+        return (selectedDateMillis != null)
+                ? selectedDateMillis
+                : MaterialDatePicker.todayInUtcMilliseconds();
+    }
 
     private void initUi(){
         closeBtn = findViewById(R.id.closeBtn);
