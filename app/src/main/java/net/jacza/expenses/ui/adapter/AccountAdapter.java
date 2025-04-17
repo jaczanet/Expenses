@@ -50,7 +50,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.menu_edit) {
                     Intent intent = new Intent(view.getContext(), AccountActivity.class);
-                    intent.putExtra("MODE", "EDIT");
+                    intent.putExtra("MODE", SaveBtnModes.EDIT);
                     intent.putExtra("ACCOUNT TO EDIT", account);
                     view.getContext().startActivity(intent);
                     return true;

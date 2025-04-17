@@ -44,7 +44,7 @@ public class AccountFragment extends Fragment {
 
         view.findViewById(R.id.addAccountBtn).setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AccountActivity.class);
-            intent.putExtra("MODE", "ADD");
+            intent.putExtra("MODE", SaveBtnModes.ADD);
             startActivity(intent);
         });
 

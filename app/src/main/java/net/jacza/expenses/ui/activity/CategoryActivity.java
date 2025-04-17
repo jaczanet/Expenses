@@ -16,6 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.ui.viewmodel.CategoryViewModel;
+import net.jacza.expenses.ui.util.SaveBtnModes;
+
 
 public class CategoryActivity extends AppCompatActivity {
 
@@ -45,38 +47,36 @@ public class CategoryActivity extends AppCompatActivity {
         Button closeBtn = findViewById(R.id.closeBtn);
         Button saveBtn = findViewById(R.id.saveBtn);
 
-        // Get intent data
-        Intent intent = getIntent();
-        String mode = intent.getStringExtra("MODE");
-
-        // Set up UI based on intent data
-        if ("EDIT".equals(mode)) {
-            tvActivityEvent.setText("Edit Category");
-            categoryToEdit = (Category) intent.getSerializableExtra("CATEGORY TO EDIT");
-            if (categoryToEdit != null) {
-                editTextCategoryName.setText(categoryToEdit.getName());
-            }
-        } else if ("ADD".equals(mode)){
-            tvActivityEvent.setText("Add New Category");
-        }
+        SaveBtnModes mode = (SaveBtnModes) getIntent().getSerializableExtra("MODE");
+        setActivityTextFields(mode, getIntent());
 
         // Set up save and close button click listeners
         saveBtn.setOnClickListener(v -> saveChanges(mode));
         closeBtn.setOnClickListener(v -> finish());
     }
 
+    private void setActivityTextFields(SaveBtnModes mode, Intent intent){
+        if (mode == SaveBtnModes.EDIT) {
+            tvActivityEvent.setText("Edit Category");
+            categoryToEdit = (Category) intent.getSerializableExtra("CATEGORY TO EDIT");
+            if (categoryToEdit != null) {
+                editTextCategoryName.setText(categoryToEdit.getName());
+            }
+        } else if (mode == SaveBtnModes.ADD){
+            tvActivityEvent.setText("Add New Category");
+        }
+    }
 
-
-    void saveChanges(String mode) {
+    void saveChanges(SaveBtnModes mode) {
         String name = editTextCategoryName.getText().toString().trim();
         if (name.isEmpty()) {
             name = "N/A";
         }
 
-        if ("EDIT".equals(mode) && categoryToEdit != null) {
+        if (mode == SaveBtnModes.EDIT && categoryToEdit != null) {
             categoryToEdit.setName(name);
             viewModel.update(categoryToEdit);
-        } else if ("ADD".equals(mode)) {
+        } else if (mode == SaveBtnModes.ADD) {
             Category newCategory = new Category(name);
             viewModel.create(newCategory);
         }

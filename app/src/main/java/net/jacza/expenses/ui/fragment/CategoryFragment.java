@@ -46,7 +46,7 @@ public class CategoryFragment extends Fragment {
             .findViewById(R.id.addCategoryBtn)
             .setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                intent.putExtra("MODE", "ADD");
+                intent.putExtra("MODE", SaveBtnModes.ADD);
                 startActivity(intent);
             });
 
