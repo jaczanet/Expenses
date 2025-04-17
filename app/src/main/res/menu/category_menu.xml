@@ -5,6 +5,5 @@
         android:title="Edit Category" />
     <item
         android:id="@+id/menu_delete"
-        android:title="Delete Category"
-        android:titleTextColor="@color/red" />
+        android:title="Delete Category" />
 </menu>
