@@ -5,8 +5,8 @@
     android:layout_width="180dp"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
-    android:radius="8dp"
-    android:elevation="2dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
     app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,6 @@
             android:text="Bank \nName"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/iconAccountMenu" />
@@ -42,7 +41,6 @@
             android:layout_height="wrap_content"
             android:text="€111,111"
             android:textSize="16sp"
-            android:textColor="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/textViewAccountName"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="8dp"/>
