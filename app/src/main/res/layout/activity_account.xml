@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/accountActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
-    android:id="@+id/accountActivity">
+    android:padding="16dp">
 
     <RelativeLayout
         android:id="@+id/buttons"
@@ -48,28 +48,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttons" />
 
-    <EditText
-        android:id="@+id/editTextAccountName"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/accountNameInputLayout"
+        style="@style/Widget.Design.TextInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="18"
-        android:inputType="text"
-        android:hint="Enter Account Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvActivityEvent" />
-    <EditText
-        android:id="@+id/editTextInitialBalance"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="16dp"
+        android:hint="Account Name"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityEvent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextAccountName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/initBalanceInputLayout"
+        style="@style/Widget.Design.TextInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:ems="18"
-        android:inputType="numberDecimal"
-        android:hint="Enter Initial Value"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAccountName" />
+        android:layout_marginRight="16dp"
+        android:hint="Initial Balance"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountNameInputLayout">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextInitialBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
