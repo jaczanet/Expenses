@@ -9,15 +9,29 @@ import net.jacza.expenses.data.raw.RawCategory;
 import net.jacza.expenses.data.source.RawCategoriesDataSource;
 
 /*
- * // TODO JavaDOC
+ * Repository class that implements CRUD functionality for Category.
  */
 public class CategoriesRepository implements Repository<Category> {
 
+    // Singleton pattern with eager initialization
+
+    private static final CategoriesRepository instance = new CategoriesRepository();
+
+    public static CategoriesRepository getInstance() {
+        return instance;
+    }
+
+    // Attributes
+
     private DataSource<RawCategory> rawCategoriesSource;
 
-    public CategoriesRepository() {
+    // Constructors
+
+    private CategoriesRepository() {
         this.rawCategoriesSource = new RawCategoriesDataSource(App.getContext());
     }
+
+    // Methods
 
     @Override
     public void create(Category entry) {

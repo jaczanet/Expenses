@@ -53,7 +53,7 @@ public class CategoryFragment extends Fragment {
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
 
-        repo = new CategoriesRepository();
+        repo = CategoriesRepository.getInstance();
         recyclerView.setLayoutManager(layoutManager);
         adapter = new CategoryAdapter((repo.read()), repo);
         recyclerView.setAdapter(adapter);
