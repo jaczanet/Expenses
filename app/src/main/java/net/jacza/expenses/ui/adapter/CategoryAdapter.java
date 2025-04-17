@@ -79,15 +79,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         notifyItemRangeChanged(position, getItemCount());
         Category tempCateg = categoryList.get(position);
         String categName =tempCateg.getName();
+
         Snackbar.make(view, "Undo Deletion of : " + categName, Snackbar.LENGTH_LONG)
-        .setAction ("UNDO", v -> {
-            categoryList.add(position, tempCateg);
-            repository.create(tempCateg);
-            notifyItemInserted(position);
-            notifyItemRangeChanged (position, getItemCount());
-        })
-        .show();
+                .setAction ("UNDO", v -> {
+                    categoryList.add(position, tempCateg);
+                    repository.create(tempCateg);
+                    notifyItemInserted(position);
+                    notifyItemRangeChanged (position, getItemCount());
+                })
+                .show();
     }
+
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
 
         private TextView categoryName;

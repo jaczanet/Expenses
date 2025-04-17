@@ -76,11 +76,10 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     }
 
     public void notifyAccountRemoved(int position, View view){
-        Account tempAcc = accounts.get(position);
-        String accName = tempAcc.getName();
-        accounts.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
+        Account tempAcc = accounts.get(position);
+        String accName = tempAcc.getName();
 
         Snackbar.make(view, "Undo Deletion of: " + accName, Snackbar.LENGTH_LONG)
                 .setAction("UNDO", v -> {
