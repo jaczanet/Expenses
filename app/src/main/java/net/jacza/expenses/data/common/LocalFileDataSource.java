@@ -35,7 +35,9 @@ public abstract class LocalFileDataSource<T> implements DataSource<T> {
         FILE.writeLines(lines);
     }
 
+    // rule for creating a string representation of the object
     protected abstract String serialize(T object);
 
+    // rule for converting a string representation back to the object
     protected abstract T parse(String line);
 }

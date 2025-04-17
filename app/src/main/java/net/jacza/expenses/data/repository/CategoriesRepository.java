@@ -1,7 +1,6 @@
 package net.jacza.expenses.data.repository;
 
 import java.util.ArrayList;
-import net.jacza.expenses.App;
 import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.common.IdentifiableRepository;
 import net.jacza.expenses.data.model.Category;
@@ -21,17 +20,13 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         return instance;
     }
 
-    // Attributes
+    private CategoriesRepository() {}
 
-    private DataSource<RawCategory> rawCategoriesSource;
+    // data sources
 
-    // Constructors
+    private DataSource<RawCategory> rawCategoriesSource = new RawCategoriesDataSource();
 
-    private CategoriesRepository() {
-        this.rawCategoriesSource = new RawCategoriesDataSource(App.getContext());
-    }
-
-    // Methods
+    // repository methods
 
     @Override
     public ArrayList<Category> read() {
@@ -55,6 +50,7 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         for (Category category : categories) {
             rawCategories.add(RawCategory.fromCategory(category));
         }
+        rawCategories.sort((a, b) -> a.getNAME().compareTo(b.getNAME()));
         rawCategoriesSource.save(rawCategories);
     }
 }
