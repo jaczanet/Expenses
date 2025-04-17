@@ -68,24 +68,33 @@ public class AccountActivity extends AppCompatActivity {
         }
     }
 
-    private void saveChanges(SaveBtnModes mode){
+    private void saveChanges(SaveBtnModes mode) {
         String name = editTextAccountName.getText().toString().trim();
-        if (name.isEmpty()) {name = "N/A";}
-
-        double balance = 0.0;
-        try {
-            balance = Double.parseDouble(editTextAccountBalance.getText().toString().trim());
-        } catch (NumberFormatException e) {
-            Log.e("AccountActivity", "Invalid balance format", e);
+        if (name.isEmpty()) {
+            name = "N/A";
         }
-//            if (mode == SaveBtnModes.EDIT && accountToEdit != null) {
-//                accountToEdit.setName(name);
-//                accountToEdit.setInitialBalance(balance);
-//                viewModel.update(accountToEdit);
-//            } else if (mode == SaveBtnModes.ADD && accountToEdit != null) {
-//                Account newAccount = new Account(name, balance);
-//                viewModel.create(newAccount);
-//            } TODO uncomment after implementing AccountsRepository
-           finish();
+
+        double balance;
+        String balanceText = editTextAccountBalance.getText().toString().trim();
+        if (balanceText.isEmpty()) {
+            balance = 0.0;
+        } else {
+            try {
+                balance = Double.parseDouble(balanceText);
+            } catch (NumberFormatException e) {
+                Log.e("AccountActivity", "Invalid balance format", e);
+                balance = 0.0;
+            }
+        }
+
+        if (mode == SaveBtnModes.EDIT && accountToEdit != null) {
+            accountToEdit.setName(name);
+            accountToEdit.setInitialBalance(balance);
+            viewModel.update(accountToEdit);
+        } else if (mode == SaveBtnModes.ADD) {
+            Account newAccount = new Account(name, balance);
+            viewModel.create(newAccount);
+        }
+        finish();
     }
 }
