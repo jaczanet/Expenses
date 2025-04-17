@@ -1,8 +1,5 @@
 package net.jacza.expenses.ui.viewmodel;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 import net.jacza.expenses.data.base.Repository;

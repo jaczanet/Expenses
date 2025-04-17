@@ -24,8 +24,8 @@ import net.jacza.expenses.ui.adapter.AccountAdapter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
 public class AccountFragment extends Fragment {
+    private RecyclerView recyclerView;
     private AccountAdapter adapter;
-
     private Repository<Account> repo;
 
     public AccountFragment() { }
@@ -39,7 +39,7 @@ public class AccountFragment extends Fragment {
 
 
     @Override
-    public void onViewCreated( View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         view.findViewById(R.id.addAccountBtn).setOnClickListener(v -> {
@@ -48,9 +48,9 @@ public class AccountFragment extends Fragment {
             startActivity(intent);
         });
 
-        RecyclerView recyclerView = view.findViewById(R.id.accountRecyclerView);
+        recyclerView = view.findViewById(R.id.accountRecyclerView);
 
-        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
+        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(getContext());
         flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
         flexboxLayoutManager.setFlexWrap(FlexWrap.WRAP);
         flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
@@ -61,7 +61,7 @@ public class AccountFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
     }
-    @SuppressLint("NotifyDataSetChanged")
+
     @Override
     public void onResume() {
         super.onResume();
