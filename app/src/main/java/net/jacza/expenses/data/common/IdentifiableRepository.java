@@ -23,5 +23,12 @@ public abstract class IdentifiableRepository<T extends Identifiable> implements 
         write(objs);
     }
 
+    @Override
+    public void delete(T entry) {
+        var objs = read();
+        objs.removeIf(item -> item.getID().equals(entry.getID()));
+        write(objs);
+    }
+
     protected abstract void write(ArrayList<T> objs);
 }

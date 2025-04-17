@@ -28,15 +28,23 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
 
     // data sources
 
-    private DataSource<RawAccount> rawAccountsSource = new RawAccountsDataSource();
-    private DataSource<RawTransaction> rawTransactionsSource = new RawTransactionsDataSource();
+    private final DataSource<RawAccount> rawAccountsSource = new RawAccountsDataSource();
+    private final DataSource<RawTransaction> rawTransactionsSource = new RawTransactionsDataSource();
 
     // repository methods
 
     @Override
     public ArrayList<Account> read() {
+        return new ArrayList<Account>(readMap().values());
+    }
+
+    HashMap<UUID, Account> readMap() {
         var IDmapAccount = new HashMap<UUID, Account>();
+
+        // read from source
         var rawAccounts = rawAccountsSource.load();
+
+        // convert
         for (RawAccount rawAccount : rawAccounts) {
             var account = new Account(
                 rawAccount.getID(),
@@ -53,23 +61,28 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
             account.updateBalance(rawTransaction.getAMOUNT());
         }
 
-        var accounts = new ArrayList<Account>(IDmapAccount.values());
-        return accounts;
+        return IDmapAccount;
     }
 
     @Override
     public void delete(Account entry) {
-        var accounts = read();
-        accounts.removeIf(item -> item.getID().equals(entry.getID()));
-        write(accounts);
+        // TODO implement safe deletion
+        super.delete(entry);
     }
 
+    @Override
     protected void write(ArrayList<Account> accounts) {
         var rawAccounts = new ArrayList<RawAccount>();
+
+        // convert
         for (Account account : accounts) {
             rawAccounts.add(RawAccount.fromAccount(account));
         }
+
+        // sort
         rawAccounts.sort((a, b) -> a.getNAME().compareTo(b.getNAME()));
+
+        // write to source
         rawAccountsSource.save(rawAccounts);
     }
 }
