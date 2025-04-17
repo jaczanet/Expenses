@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.UUID;
 import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.common.IdentifiableRepository;
+import net.jacza.expenses.data.model.Account;
+import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.raw.RawTransaction;
 import net.jacza.expenses.data.source.RawTransactionsDataSource;
@@ -51,13 +53,27 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
 
         // convert, inject category and account
         for (RawTransaction rawTransaction : rawTransactions) {
+            // category extraction with fallback logic
+            var categoryID = rawTransaction.getCATEGORY_ID();
+            var category = categories.get(categoryID);
+            if (category == null) {
+                category = new Category(categoryID, (categoryID.toString()).substring(0, 8));
+            }
+
+            // account extraction with fallback logic
+            var accountID = rawTransaction.getACCOUNT_ID();
+            var account = accounts.get(accountID);
+            if (account == null) {
+                account = new Account(accountID, (accountID.toString()).substring(0, 8), 0);
+            }
+
             var transaction = new Transaction(
                 rawTransaction.getID(),
                 rawTransaction.getTIMESTAMP(),
                 rawTransaction.getAMOUNT(),
                 rawTransaction.getNOTE(),
-                categories.get(rawTransaction.getCATEGORY_ID()),
-                accounts.get(rawTransaction.getACCOUNT_ID())
+                category,
+                account
             );
             IDmapAccount.put(transaction.getID(), transaction);
         }
