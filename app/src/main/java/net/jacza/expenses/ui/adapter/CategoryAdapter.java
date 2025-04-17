@@ -17,6 +17,7 @@ import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.ui.activity.CategoryActivity;
+import net.jacza.expenses.ui.util.SaveBtnModes;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.menu_edit) {
                     Intent intent = new Intent(view.getContext(), CategoryActivity.class);
-                    intent.putExtra("MODE", "EDIT");
+                    intent.putExtra("MODE", SaveBtnModes.Modes.EDIT);
                     intent.putExtra("CATEGORY TO EDIT", category);
                     view.getContext().startActivity(intent);
                     return true;

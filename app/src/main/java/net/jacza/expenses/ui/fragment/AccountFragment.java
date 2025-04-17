@@ -20,6 +20,7 @@ import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.data.repository.AccountsRepository;
 import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.adapter.AccountAdapter;
+import net.jacza.expenses.ui.util.SaveBtnModes;
 
 public class AccountFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -43,7 +44,7 @@ public class AccountFragment extends Fragment {
 
         view.findViewById(R.id.addAccountBtn).setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AccountActivity.class);
-            intent.putExtra("MODE", "ADD");
+            intent.putExtra("MODE", SaveBtnModes.Modes.ADD);
             startActivity(intent);
         });
 
@@ -54,8 +55,8 @@ public class AccountFragment extends Fragment {
         flexboxLayoutManager.setFlexWrap(FlexWrap.WRAP);
         flexboxLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
 
-//        repo = new AccountsRepository(getContext());
-//        adapter =new AccountAdapter(repo.read(),repo);
+//        repo = new AccountsRepository();
+//        adapter = new AccountAdapter(repo.read(),repo);
         recyclerView.setLayoutManager(flexboxLayoutManager);
         recyclerView.setAdapter(adapter);
 

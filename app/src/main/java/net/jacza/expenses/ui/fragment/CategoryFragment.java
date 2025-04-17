@@ -7,16 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.adapter.CategoryAdapter;
+import net.jacza.expenses.ui.util.SaveBtnModes;
+
 
 public class CategoryFragment extends Fragment {
 
@@ -42,7 +46,7 @@ public class CategoryFragment extends Fragment {
             .findViewById(R.id.addCategoryBtn)
             .setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                intent.putExtra("MODE", "ADD");
+                intent.putExtra("MODE", SaveBtnModes.Modes.ADD);
                 startActivity(intent);
             });
 

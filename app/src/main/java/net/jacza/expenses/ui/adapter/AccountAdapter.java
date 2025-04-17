@@ -18,6 +18,7 @@ import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.ui.activity.AccountActivity;
+import net.jacza.expenses.ui.util.SaveBtnModes;
 
 import java.util.List;
 
@@ -49,8 +50,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.menu_edit) {
                     Intent intent = new Intent(view.getContext(), AccountActivity.class);
-                    intent.putExtra("MODE", "EDIT");
-                    intent.putExtra("ACCOUNT TO EDIT", (CharSequence) account);
+                    intent.putExtra("MODE", SaveBtnModes.Modes.EDIT);
+                    intent.putExtra("ACCOUNT TO EDIT", account);
                     view.getContext().startActivity(intent);
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
