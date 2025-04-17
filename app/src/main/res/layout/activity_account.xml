@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Add New Account"
+        android:text="event_text"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +57,7 @@
         android:inputType="text"
         android:hint="Enter Account Name"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvActivityEvent" />
     <EditText
         android:id="@+id/editTextInitialBalance"
@@ -67,6 +68,7 @@
         android:inputType="numberDecimal"
         android:hint="Enter Initial Value"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAccountName" />
 
 
