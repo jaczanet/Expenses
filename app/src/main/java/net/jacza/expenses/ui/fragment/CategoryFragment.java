@@ -2,33 +2,34 @@ package net.jacza.expenses.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
-
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
-import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.data.model.Category;
+import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.adapter.CategoryAdapter;
 
 public class CategoryFragment extends Fragment {
+
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
     Repository<Category> repo;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(
+        LayoutInflater inflater,
+        ViewGroup container,
+        Bundle savedInstanceState
+    ) {
         View rootView = inflater.inflate(R.layout.fragment_category, container, false);
         return rootView;
     }
@@ -37,11 +38,13 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.addCategoryBtn).setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), CategoryActivity.class);
-            intent.putExtra("MODE", "ADD");
-            startActivity(intent);
-        });
+        view
+            .findViewById(R.id.addCategoryBtn)
+            .setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                intent.putExtra("MODE", "ADD");
+                startActivity(intent);
+            });
 
         recyclerView = view.findViewById(R.id.categoryFragRecyclerView);
 
@@ -50,7 +53,7 @@ public class CategoryFragment extends Fragment {
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
 
-        repo = new CategoriesRepository(getContext());
+        repo = new CategoriesRepository();
         recyclerView.setLayoutManager(layoutManager);
         adapter = new CategoryAdapter((repo.read()), repo);
         recyclerView.setAdapter(adapter);

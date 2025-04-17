@@ -1,7 +1,7 @@
 package net.jacza.expenses.data.repository;
 
-import android.content.Context;
 import java.util.ArrayList;
+import net.jacza.expenses.App;
 import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
@@ -15,8 +15,8 @@ public class CategoriesRepository implements Repository<Category> {
 
     private DataSource<RawCategory> rawCategoriesSource;
 
-    public CategoriesRepository(Context context) {
-        this.rawCategoriesSource = new RawCategoriesDataSource(context);
+    public CategoriesRepository() {
+        this.rawCategoriesSource = new RawCategoriesDataSource(App.getContext());
     }
 
     @Override
