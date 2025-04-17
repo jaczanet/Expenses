@@ -1,7 +1,6 @@
 package net.jacza.expenses.data.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.UUID;
 import net.jacza.expenses.data.base.Identifiable;
 
@@ -13,7 +12,7 @@ public class Transaction implements Identifiable, Serializable {
     // attributes
 
     private final UUID ID;
-    private LocalDate date;
+    private long timestamp;
     private double amount;
     private String note;
     private Category category;
@@ -22,25 +21,25 @@ public class Transaction implements Identifiable, Serializable {
     // constructors
 
     public Transaction(
-        LocalDate date,
+        long timestamp,
         double amount,
         String note,
         Category category,
         Account account
     ) {
-        this(UUID.randomUUID(), date, amount, note, category, account);
+        this(UUID.randomUUID(), timestamp, amount, note, category, account);
     }
 
     public Transaction(
         UUID ID,
-        LocalDate date,
+        long timestamp,
         double amount,
         String note,
         Category category,
         Account account
     ) {
         this.ID = ID;
-        this.date = date != null ? date : LocalDate.now();
+        this.timestamp = timestamp;
         this.amount = amount;
         this.note = note != null ? note : "Transaction";
         this.category = category;
@@ -54,8 +53,8 @@ public class Transaction implements Identifiable, Serializable {
         return ID;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public long getTimestamp() {
+        return timestamp;
     }
 
     public double getAmount() {
@@ -76,8 +75,8 @@ public class Transaction implements Identifiable, Serializable {
 
     // setters
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public void setAmount(double amount) {

@@ -1,6 +1,5 @@
 package net.jacza.expenses.data.raw;
 
-import java.time.LocalDate;
 import java.util.UUID;
 import net.jacza.expenses.data.model.Transaction;
 
@@ -12,7 +11,7 @@ public class RawTransaction {
     // attributes
 
     private final UUID ID;
-    private final LocalDate DATE;
+    private final long TIMESTAMP;
     private final double AMOUNT;
     private final String NOTE;
     private final UUID CATEGORY_ID;
@@ -22,14 +21,14 @@ public class RawTransaction {
 
     public RawTransaction(
         UUID ID,
-        LocalDate DATE,
+        long TIMESTAMP,
         double AMOUNT,
         String NOTE,
         UUID CATEGORY_ID,
         UUID ACCOUNT_ID
     ) {
         this.ID = ID;
-        this.DATE = DATE;
+        this.TIMESTAMP = TIMESTAMP;
         this.AMOUNT = AMOUNT;
         this.NOTE = NOTE;
         this.CATEGORY_ID = CATEGORY_ID;
@@ -41,7 +40,7 @@ public class RawTransaction {
     public static RawTransaction fromTransaction(Transaction transaction) {
         return new RawTransaction(
             transaction.getID(),
-            transaction.getDate(),
+            transaction.getTimestamp(),
             transaction.getAmount(),
             transaction.getNote(),
             transaction.getCategory().getID(),
@@ -55,8 +54,8 @@ public class RawTransaction {
         return ID;
     }
 
-    public LocalDate getDATE() {
-        return DATE;
+    public long getTIMESTAMP() {
+        return TIMESTAMP;
     }
 
     public double getAMOUNT() {
