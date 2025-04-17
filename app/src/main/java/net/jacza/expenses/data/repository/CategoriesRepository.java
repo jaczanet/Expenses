@@ -3,7 +3,7 @@ package net.jacza.expenses.data.repository;
 import java.util.ArrayList;
 import net.jacza.expenses.App;
 import net.jacza.expenses.data.base.DataSource;
-import net.jacza.expenses.data.base.Repository;
+import net.jacza.expenses.data.common.IdentifiableRepository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.raw.RawCategory;
 import net.jacza.expenses.data.source.RawCategoriesDataSource;
@@ -11,7 +11,7 @@ import net.jacza.expenses.data.source.RawCategoriesDataSource;
 /*
  * Repository class that implements CRUD functionality for Category.
  */
-public class CategoriesRepository implements Repository<Category> {
+public class CategoriesRepository extends IdentifiableRepository<Category> {
 
     // Singleton pattern with eager initialization
 
@@ -34,13 +34,6 @@ public class CategoriesRepository implements Repository<Category> {
     // Methods
 
     @Override
-    public void create(Category entry) {
-        var categories = read();
-        categories.add(entry);
-        write(categories);
-    }
-
-    @Override
     public ArrayList<Category> read() {
         var categories = new ArrayList<Category>();
         var rawCategories = rawCategoriesSource.load();
@@ -51,20 +44,13 @@ public class CategoriesRepository implements Repository<Category> {
     }
 
     @Override
-    public void update(Category entry) {
-        var categories = read();
-        categories.replaceAll(item -> item.getID().equals(entry.getID()) ? entry : item);
-        write(categories);
-    }
-
-    @Override
     public void delete(Category entry) {
         var categories = read();
         categories.removeIf(item -> item.getID().equals(entry.getID()));
         write(categories);
     }
 
-    private void write(ArrayList<Category> categories) {
+    protected void write(ArrayList<Category> categories) {
         var rawCategories = new ArrayList<RawCategory>();
         for (Category category : categories) {
             rawCategories.add(RawCategory.fromCategory(category));
