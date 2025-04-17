@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     android:radius="8dp"
-    android:elevation="2dp">
+    android:elevation="2dp"
+    app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
