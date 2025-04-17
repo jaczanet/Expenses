@@ -61,7 +61,7 @@ public class AccountActivity extends AppCompatActivity {
             accountToEdit = (Account) intent.getSerializableExtra("ACCOUNT TO EDIT");
             if (accountToEdit != null) {
                 editTextAccountName.setText(accountToEdit.getName());
-                editTextAccountBalance.setText(String.valueOf(accountToEdit.getBalance()));
+                editTextAccountBalance.setText(String.valueOf(accountToEdit.getInitialBalance()));
             }
         } else if(mode == SaveBtnModes.ADD){
             tvActivityEvent.setText("Add New Account");
