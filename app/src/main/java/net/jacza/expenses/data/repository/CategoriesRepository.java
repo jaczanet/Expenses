@@ -33,6 +33,7 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
     @Override
     public ArrayList<Category> read() {
         var categories = new ArrayList<Category>(readMap().values());
+        categories.sort((a, b) -> a.getName().compareTo(b.getName())); // default sorting logic
         return categories;
     }
 
@@ -59,9 +60,6 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         for (Category category : categories) {
             rawCategories.add(RawCategory.fromCategory(category));
         }
-
-        // sort
-        rawCategories.sort((a, b) -> a.getNAME().compareTo(b.getNAME()));
 
         // write to source
         rawCategoriesSource.save(rawCategories);

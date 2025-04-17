@@ -36,6 +36,7 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
     @Override
     public ArrayList<Account> read() {
         var accounts = new ArrayList<Account>(readMap().values());
+        accounts.sort((a, b) -> a.getName().compareTo(b.getName())); // default sorting logic
         return accounts;
     }
 
@@ -73,9 +74,6 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         for (Account account : accounts) {
             rawAccounts.add(RawAccount.fromAccount(account));
         }
-
-        // sort
-        rawAccounts.sort((a, b) -> a.getNAME().compareTo(b.getNAME()));
 
         // write to source
         rawAccountsSource.save(rawAccounts);

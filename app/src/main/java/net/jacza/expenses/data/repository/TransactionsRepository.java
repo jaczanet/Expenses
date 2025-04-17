@@ -33,6 +33,7 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
     @Override
     public ArrayList<Transaction> read() {
         var transactions = new ArrayList<Transaction>(readMap().values());
+        transactions.sort((a, b) -> -1 * Long.compare(a.getTimestamp(), b.getTimestamp())); // default sorting logic
         return transactions;
     }
 
@@ -72,9 +73,6 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
         for (Transaction transaction : transactions) {
             rawTransactions.add(RawTransaction.fromTransaction(transaction));
         }
-
-        // sort
-        rawTransactions.sort((a, b) -> -1 * Long.compare(a.getTIMESTAMP(), b.getTIMESTAMP()));
 
         // write to source
         rawTransactionsSource.save(rawTransactions);
