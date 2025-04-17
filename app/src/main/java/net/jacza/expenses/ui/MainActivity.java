@@ -3,7 +3,6 @@ package net.jacza.expenses.ui;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -38,14 +37,7 @@ public class MainActivity extends AppCompatActivity {
         DynamicColors.applyToActivityIfAvailable(this);
         initViews();
         setupBottomNavigation();
-
-        if (savedInstanceState != null) {
-            int selectedItem = savedInstanceState.getInt("selected_nav_item", R.id.transactions);
-            bottomNavigationView.setSelectedItemId(selectedItem); // This triggers the right fragment to load
-        } else {
-            bottomNavigationView.setSelectedItemId(R.id.transactions);
-        }
-
+        setDefaultFragment();
     }
 
     private void setupEdgeToEdge() {
@@ -84,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("selected_nav_item", bottomNavigationView.getSelectedItemId());
+    private void setDefaultFragment() {
+        if (bottomNavigationView.getSelectedItemId() == R.id.transactions) {
+            loadFragment(getTransactionFragment());
+        }
     }
 
     private void loadFragment(Fragment fragment) {
