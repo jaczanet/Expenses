@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
-import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
@@ -77,19 +76,22 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     }
 
     public void notifyAccountRemoved(int position, View view){
+        Account tempAcc = accounts.get(position);
+        String accName = tempAcc.getName();
+        accounts.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
-        Account tempAcc = accounts.get(position);
-        String accName =tempAcc.getName();
-        Snackbar.make(view, "Undo Deletion of : " + accName, Snackbar.LENGTH_LONG)
-                .setAction ("UNDO", v -> {
+
+        Snackbar.make(view, "Undo Deletion of: " + accName, Snackbar.LENGTH_LONG)
+                .setAction("UNDO", v -> {
                     accounts.add(position, tempAcc);
                     repo.create(tempAcc);
                     notifyItemInserted(position);
-                    notifyItemRangeChanged (position, getItemCount());
+                    notifyItemRangeChanged(position, getItemCount());
                 })
                 .show();
     }
+
 
     static class AccountViewHolder extends RecyclerView.ViewHolder {
         private TextView accountName;
@@ -99,7 +101,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         public AccountViewHolder(@NonNull View itemView) {
             super(itemView);
             accountName = itemView.findViewById(R.id.textViewAccountName);
-            accountBalance = itemView.findViewById(R.id.textViewBalance);
+            accountBalance = itemView.findViewById(R.id.textViewInitialBalance);
             menuButton = itemView.findViewById(R.id.iconAccountMenu);
         }
 
