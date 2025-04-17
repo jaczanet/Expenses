@@ -32,7 +32,8 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
 
     @Override
     public ArrayList<Category> read() {
-        return new ArrayList<Category>(readMap().values());
+        var categories = new ArrayList<Category>(readMap().values());
+        return categories;
     }
 
     HashMap<UUID, Category> readMap() {
@@ -48,12 +49,6 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         }
 
         return IDmapCategory;
-    }
-
-    @Override
-    public void delete(Category entry) {
-        // TODO implement safe deletion
-        super.delete(entry);
     }
 
     @Override

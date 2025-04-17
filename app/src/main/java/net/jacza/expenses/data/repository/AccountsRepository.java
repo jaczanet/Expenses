@@ -35,7 +35,8 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
 
     @Override
     public ArrayList<Account> read() {
-        return new ArrayList<Account>(readMap().values());
+        var accounts = new ArrayList<Account>(readMap().values());
+        return accounts;
     }
 
     HashMap<UUID, Account> readMap() {
@@ -62,12 +63,6 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         }
 
         return IDmapAccount;
-    }
-
-    @Override
-    public void delete(Account entry) {
-        // TODO implement safe deletion
-        super.delete(entry);
     }
 
     @Override
