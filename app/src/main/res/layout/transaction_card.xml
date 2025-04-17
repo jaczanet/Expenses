@@ -30,7 +30,7 @@
                 android:text="25"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorOnSurface" />
 
             <TextView
                 android:id="@+id/textMonth"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="MAR"
                 android:textSize="12sp"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:textAllCaps="true" />
         </LinearLayout>
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sport shoes"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="16sp" />
 
             <LinearLayout
