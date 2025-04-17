@@ -7,13 +7,15 @@
         android:title="@string/stats"
         android:icon="@drawable/ic_stats"
         android:contentDescription="@string/content_description_stats"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/md_theme_onSurface"/>
 
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings"
         android:contentDescription="@string/content_description_favorite"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:iconTint="@color/md_theme_onSurface"/>
 
 </menu>
