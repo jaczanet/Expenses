@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,8 @@ import com.google.android.material.snackbar.Snackbar;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
+import net.jacza.expenses.domain.FoundAssociatedTransactionException;
+import net.jacza.expenses.domain.SafeDelete;
 import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
@@ -47,6 +50,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             PopupMenu popupMenu = new PopupMenu(view.getContext(), holder.menuButton);
             popupMenu.inflate(R.menu.account_menu);
             popupMenu.setOnMenuItemClickListener(item -> {
+                // Handle menu item clicks here
                 if (item.getItemId() == R.id.menu_edit) {
                     Intent intent = new Intent(view.getContext(), AccountActivity.class);
                     intent.putExtra("MODE", SaveBtnModes.EDIT);
@@ -55,9 +59,13 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
                     // Delete the account
-                    repo.delete(account);
-                    notifyAccountRemoved(position, view);
-                    setList(repo.read());
+                    try{
+                        SafeDelete.account(account);
+                        notifyAccountRemoved(position, view);
+                        setList(repo.read());
+                    }catch (FoundAssociatedTransactionException e){
+                        Toast.makeText(view.getContext(), "Cannot delete account with associated transactions", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
                 return false;
