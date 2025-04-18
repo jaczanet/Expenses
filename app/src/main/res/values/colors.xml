@@ -143,4 +143,6 @@
     <color name="md_theme_surfaceContainer_highContrast">#E2E2E9</color>
     <color name="md_theme_surfaceContainerHigh_highContrast">#D3D4DB</color>
     <color name="md_theme_surfaceContainerHighest_highContrast">#C5C6CD</color>
+    <color name="income_color">#4CAF50</color>
+    <color name="expense_color">#FF5555</color>
 </resources>
