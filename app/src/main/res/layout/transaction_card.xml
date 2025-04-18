@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="12dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
-    app:strokeWidth="0dp"
-    android:background="@android:color/transparent">
+    app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:background="#F3F3F3">
+        android:padding="12dp">
 
         <LinearLayout
             android:id="@+id/layoutDate"
@@ -24,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textDay"
+                android:id="@+id/tvDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="25"
@@ -33,7 +32,7 @@
                 android:textColor="?attr/colorOnSurface" />
 
             <TextView
-                android:id="@+id/textMonth"
+                android:id="@+id/tvMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MAR"
@@ -51,10 +50,10 @@
             app:layout_constraintStart_toEndOf="@id/layoutDate"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/textAmount">
+            app:layout_constraintEnd_toStartOf="@id/tvAmount">
 
             <TextView
-                android:id="@+id/textTitle"
+                android:id="@+id/tvTransactionNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sport shoes"
@@ -75,17 +74,17 @@
                     android:src="@drawable/ic_tag"/>
 
                 <TextView
+                    android:id="@+id/tvCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shopping"
                     android:textSize="14sp"
-                    android:textColor="@android:color/darker_gray"
                     android:layout_marginStart="4dp"/>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textAmount"
+            android:id="@+id/tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+ €350.00"
@@ -97,4 +96,4 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
