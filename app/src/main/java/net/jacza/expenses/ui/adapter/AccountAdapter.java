@@ -64,7 +64,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
                         notifyAccountRemoved(position, view);
                         setList(repo.read());
                     }catch (FoundAssociatedTransactionException e){
-                        Toast.makeText(view.getContext(), "Cannot delete account with associated transactions", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 }
