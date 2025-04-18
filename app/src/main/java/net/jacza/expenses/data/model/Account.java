@@ -26,7 +26,7 @@ public class Account implements Identifiable, Serializable {
         this.ID = ID;
         this.name = name != null ? name : "Account";
         this.initialBalance = initialBalance;
-        this.balance = 0.0;
+        this.balance = initialBalance;
     }
 
     // getters
