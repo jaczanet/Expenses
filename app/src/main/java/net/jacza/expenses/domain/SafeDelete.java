@@ -33,7 +33,7 @@ public class SafeDelete {
         categsRepo.delete(entry);
     }
 
-    public static void category(Account entry) throws FoundAssociatedTransactionException {
+    public static void account(Account entry) throws FoundAssociatedTransactionException {
         var transactions = transRepo.read();
         for (var tran : transactions) {
             var tranAccID = tran.getAccount().getID();
