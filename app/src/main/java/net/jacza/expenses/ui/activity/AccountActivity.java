@@ -12,14 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.data.repository.AccountsRepository;
 import net.jacza.expenses.ui.util.SaveBtnModes;
-import net.jacza.expenses.ui.viewmodel.AccountViewModel;
 
 public class AccountActivity extends AppCompatActivity {
     TextView tvActivityEvent;
@@ -27,7 +25,6 @@ public class AccountActivity extends AppCompatActivity {
     private EditText editTextAccountBalance;
     private Button saveBtn;
     private Button closeBtn;
-    private AccountViewModel viewModel;
     private Account accountToEdit = null;
 
     @Override
@@ -40,7 +37,6 @@ public class AccountActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        viewModel = new ViewModelProvider(this).get(AccountViewModel.class);
 
         //Bind UI elements
         tvActivityEvent = findViewById(R.id.tvActivityEvent);

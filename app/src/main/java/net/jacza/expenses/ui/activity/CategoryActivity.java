@@ -11,13 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
-import net.jacza.expenses.ui.viewmodel.CategoryViewModel;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
 
@@ -25,7 +23,6 @@ public class CategoryActivity extends AppCompatActivity {
     Button saveBtn, closeBtn;
     private EditText editTextCategoryName;
     private TextView tvActivityEvent;
-    private CategoryViewModel viewModel;
 
     private Category categoryToEdit;
 
@@ -39,9 +36,6 @@ public class CategoryActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        // Initialize ViewModel
-        viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
         // Bind UI elements
         tvActivityEvent = findViewById(R.id.tvActivityEvent);
