@@ -12,30 +12,41 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.jacza.expenses.R;
+import net.jacza.expenses.data.base.Repository;
+import net.jacza.expenses.data.model.Transaction;
+import net.jacza.expenses.data.repository.TransactionsRepository;
 import net.jacza.expenses.ui.activity.TransactionActivity;
 import net.jacza.expenses.ui.adapter.TransactionAdapter;
+import net.jacza.expenses.ui.util.SaveBtnModes;
 
 public class TransactionFragment extends Fragment {
     private RecyclerView recyclerView;
     private TransactionAdapter adapter;
+    private Repository<Transaction> repo = TransactionsRepository.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_transaction, container, false);
 
+        adapter = new TransactionAdapter(repo.read());
         recyclerView = rootView.findViewById(R.id.transactionsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TransactionAdapter();
         recyclerView.setAdapter(adapter);
 
         // Set up the add transaction button
         rootView.findViewById(R.id.addTransactionBtn).setOnClickListener(v -> {
-            // Create an Intent to open another activity
             Intent intent = new Intent(getActivity(), TransactionActivity.class);
+            intent.putExtra("MODE", SaveBtnModes.ADD);
             startActivity(intent);
         });
 
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.setList(repo.read());
+        adapter.notifyDataSetChanged();
+    }
 }
