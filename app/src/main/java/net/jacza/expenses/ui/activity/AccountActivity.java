@@ -2,6 +2,7 @@ package net.jacza.expenses.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.data.repository.AccountsRepository;
+import net.jacza.expenses.ui.util.DecimalDigitsInputFilter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
 public class AccountActivity extends AppCompatActivity {
@@ -30,6 +32,19 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupEdgeToEdge();
+
+        initUi();
+        setAmountInputFilter();
+
+        SaveBtnModes mode = (SaveBtnModes) getIntent().getSerializableExtra("MODE");
+        setActivityTextFields(mode, getIntent());
+
+        saveBtn.setOnClickListener(v -> saveChanges(mode));
+        closeBtn.setOnClickListener(v -> finish());
+    }
+
+    private void setupEdgeToEdge() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_account);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.accountActivity), (v, insets) -> {
@@ -37,20 +52,14 @@ public class AccountActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
 
-        //Bind UI elements
+    private void initUi(){
         tvActivityEvent = findViewById(R.id.tvActivityEvent);
         editTextAccountName= findViewById(R.id.editTextAccountName);
         editTextAccountBalance= findViewById(R.id.editTextInitialBalance);
         closeBtn= findViewById(R.id.closeBtn);
         saveBtn= findViewById(R.id.saveBtn);
-
-        SaveBtnModes mode = (SaveBtnModes) getIntent().getSerializableExtra("MODE");
-        setActivityTextFields(mode, getIntent());
-
-        saveBtn.setOnClickListener(v -> saveChanges(mode));
-
-        closeBtn.setOnClickListener(v -> finish());
     }
 
     private void setActivityTextFields(SaveBtnModes mode, Intent intent){
@@ -64,6 +73,12 @@ public class AccountActivity extends AppCompatActivity {
         } else if(mode == SaveBtnModes.ADD){
             tvActivityEvent.setText("Add New Account");
         }
+    }
+
+    private void setAmountInputFilter(){
+        editTextAccountBalance.setFilters(new InputFilter[]{
+                new DecimalDigitsInputFilter(10, 2)
+        });
     }
 
     private void saveChanges(SaveBtnModes mode) {
