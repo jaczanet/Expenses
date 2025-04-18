@@ -17,7 +17,10 @@ import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 import net.jacza.expenses.ui.activity.TransactionActivity;
 import net.jacza.expenses.ui.adapter.TransactionAdapter;
+import net.jacza.expenses.ui.util.MarginTransactionDecoration;
 import net.jacza.expenses.ui.util.SaveBtnModes;
+
+import java.util.Objects;
 
 public class TransactionFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -28,10 +31,12 @@ public class TransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_transaction, container, false);
 
-        adapter = new TransactionAdapter(repo.read());
+        adapter = new TransactionAdapter(repo.read(), requireContext());
         recyclerView = rootView.findViewById(R.id.transactionsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new MarginTransactionDecoration(10));
+
 
         // Set up the add transaction button
         rootView.findViewById(R.id.addTransactionBtn).setOnClickListener(v -> {
