@@ -25,7 +25,7 @@ public class RawTransactionsDataSource extends LocalFileDataSource<RawTransactio
             DELIMITER +
             "%d" +
             DELIMITER +
-            "%2.f" +
+            "%.2f" +
             DELIMITER +
             "%s" +
             DELIMITER +
