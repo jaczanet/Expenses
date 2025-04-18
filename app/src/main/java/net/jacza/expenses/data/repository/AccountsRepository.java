@@ -47,7 +47,7 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         var rawAccounts = rawAccountsSource.load();
 
         // convert
-        for (RawAccount rawAccount : rawAccounts) {
+        for (var rawAccount : rawAccounts) {
             var account = new Account(
                 rawAccount.getID(),
                 rawAccount.getNAME(),
@@ -58,7 +58,7 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
 
         // update accounts balance
         var rawTransactions = rawTransactionsSource.load();
-        for (RawTransaction rawTransaction : rawTransactions) {
+        for (var rawTransaction : rawTransactions) {
             var account = IDmapAccount.get(rawTransaction.getACCOUNT_ID());
             account.updateBalance(rawTransaction.getAMOUNT());
         }
@@ -71,7 +71,7 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         var rawAccounts = new ArrayList<RawAccount>();
 
         // convert
-        for (Account account : accounts) {
+        for (var account : accounts) {
             rawAccounts.add(RawAccount.fromAccount(account));
         }
 

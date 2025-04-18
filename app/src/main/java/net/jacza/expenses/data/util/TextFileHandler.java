@@ -19,7 +19,7 @@ public class TextFileHandler {
 
     public ArrayList<String> readLines() {
         var lines = new ArrayList<String>();
-        try (Scanner file = new Scanner(FILE_HANDLE)) {
+        try (var file = new Scanner(FILE_HANDLE)) {
             while (file.hasNextLine()) {
                 lines.add(file.nextLine());
             }
@@ -30,8 +30,8 @@ public class TextFileHandler {
     }
 
     public void writeLines(ArrayList<String> lines) {
-        try (FileWriter file = new FileWriter(FILE_HANDLE)) {
-            for (String line : lines) {
+        try (var file = new FileWriter(FILE_HANDLE)) {
+            for (var line : lines) {
                 file.write(line + "\n");
             }
         } catch (java.io.IOException exception) {

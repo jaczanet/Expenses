@@ -44,7 +44,7 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         var rawCategories = rawCategoriesSource.load();
 
         // convert
-        for (RawCategory rawCategory : rawCategories) {
+        for (var rawCategory : rawCategories) {
             var category = new Category(rawCategory.getID(), rawCategory.getNAME());
             IDmapCategory.put(category.getID(), category);
         }
@@ -57,7 +57,7 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         var rawCategories = new ArrayList<RawCategory>();
 
         // convert
-        for (Category category : categories) {
+        for (var category : categories) {
             rawCategories.add(RawCategory.fromCategory(category));
         }
 

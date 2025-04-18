@@ -20,7 +20,7 @@ public abstract class LocalFileDataSource<T> implements DataSource<T> {
     public ArrayList<T> load() {
         var objs = new ArrayList<T>();
         var lines = FILE.readLines();
-        for (String line : lines) {
+        for (var line : lines) {
             objs.add(parse(line));
         }
         return objs;
@@ -29,7 +29,7 @@ public abstract class LocalFileDataSource<T> implements DataSource<T> {
     @Override
     public void save(ArrayList<T> objs) {
         var lines = new ArrayList<String>();
-        for (T obj : objs) {
+        for (var obj : objs) {
             lines.add(serialize(obj));
         }
         FILE.writeLines(lines);

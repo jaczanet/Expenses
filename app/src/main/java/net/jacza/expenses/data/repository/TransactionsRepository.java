@@ -52,7 +52,7 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
         var rawTransactions = rawTransactionsSource.load();
 
         // convert, inject category and account
-        for (RawTransaction rawTransaction : rawTransactions) {
+        for (var rawTransaction : rawTransactions) {
             // category extraction with fallback logic
             var categoryID = rawTransaction.getCATEGORY_ID();
             var category = categories.get(categoryID);
@@ -86,7 +86,7 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
         var rawTransactions = new ArrayList<RawTransaction>();
 
         // convert
-        for (Transaction transaction : transactions) {
+        for (var transaction : transactions) {
             rawTransactions.add(RawTransaction.fromTransaction(transaction));
         }
 
