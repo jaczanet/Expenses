@@ -16,18 +16,18 @@ import com.google.android.material.snackbar.Snackbar;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
+import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
-    List<Category> categoryList;
-    private Repository<Category> repository;
+    private List<Category> categoryList;
+    private Repository<Category> repository = CategoriesRepository.getInstance();
 
-    public CategoryAdapter(List<Category> categoryList, Repository<Category> repository) {
+    public CategoryAdapter(List<Category> categoryList) {
         this.categoryList = categoryList;
-        this.repository = repository;
     }
 
     @NonNull

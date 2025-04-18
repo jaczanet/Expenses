@@ -56,7 +56,7 @@ public class CategoryFragment extends Fragment {
         layoutManager.setFlexWrap(FlexWrap.WRAP);
 
         repo = CategoriesRepository.getInstance();
-        adapter = new CategoryAdapter((repo.read()), repo);
+        adapter = new CategoryAdapter((repo.read()));
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
