@@ -43,38 +43,45 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvActivityEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="event_text"
+        android:text="@string/event_placeholder"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-    <EditText
-        android:id="@+id/etTransactionAmount"
-        android:layout_width="180dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/amountInputLayout"
+        style="@style/Widget.Design.TextInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:hint="@string/currency_symbol_euro"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="100dp"
+        android:hint="Amount €"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityEvent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTransactionAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:inputType="numberSigned|numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/selectAccountMenu"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         app:boxBackgroundColor="@android:color/transparent"
         app:boxStrokeColor="@android:color/transparent"
         app:boxStrokeWidth="0dp"
@@ -82,15 +89,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTransactionAmount"
+        app:layout_constraintTop_toBottomOf="@+id/amountInputLayout"
         app:startIconDrawable="@drawable/ic_accounts_outline">
 
-        <MultiAutoCompleteTextView
-            android:id="@+id/autoCompleteText"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:hint="@string/select_account" />
+            android:hint="@string/select_account"
+            android:inputType="" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,46 +105,60 @@
         android:id="@+id/NoteDateLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="60dp"
         android:layout_weight="30"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectAccountMenu"
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/selectAccountMenu">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selectDateBtn"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:icon="@drawable/ic_calendar"
+            app:iconSize="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/note_input_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/note_input_layout" />
 
         <EditText
             android:id="@+id/etNote"
-            android:layout_width="340dp"
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:hint="@string/enter_note" />
-
-        <Button
-            android:id="@+id/selectDateBtn"
-            style="?attr/materialIconButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/ic_calendar"
-            app:iconSize="24dp" />
+            android:hint="@string/note" />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/select_category"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/flexboxLayoutDisplayingCategs"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/flexboxLayout"
+        android:id="@+id/flexboxLayoutDisplayingCategs"
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="12dp"
         app:alignItems="stretch"
         app:flexWrap="wrap"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NoteDateLinearLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/NoteDateLinearLayout">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoriesRecyclerView"
+            android:id="@+id/displayingCategoriesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
