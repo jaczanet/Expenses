@@ -14,7 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import net.jacza.expenses.R;
+import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
+import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.viewmodel.CategoryViewModel;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
@@ -72,13 +74,13 @@ public class CategoryActivity extends AppCompatActivity {
         if (name.isEmpty()) {
             name = "N/A";
         }
-
+        Repository<Category> repo = CategoriesRepository.getInstance();
         if (mode == SaveBtnModes.EDIT && categoryToEdit != null) {
             categoryToEdit.setName(name);
-            viewModel.update(categoryToEdit);
+            repo.update(categoryToEdit);
         } else if (mode == SaveBtnModes.ADD) {
             Category newCategory = new Category(name);
-            viewModel.create(newCategory);
+            repo.create(newCategory);
         }
         finish();
     }

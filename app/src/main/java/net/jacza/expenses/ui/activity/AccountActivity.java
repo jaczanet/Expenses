@@ -15,7 +15,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import net.jacza.expenses.R;
+import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
+import net.jacza.expenses.data.repository.AccountsRepository;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 import net.jacza.expenses.ui.viewmodel.AccountViewModel;
 
@@ -87,13 +89,14 @@ public class AccountActivity extends AppCompatActivity {
             }
         }
 
+        Repository<Account> repo = AccountsRepository.getInstance();
         if (mode == SaveBtnModes.EDIT && accountToEdit != null) {
             accountToEdit.setName(name);
             accountToEdit.setInitialBalance(balance);
-            viewModel.update(accountToEdit);
+            repo.update(accountToEdit);
         } else if (mode == SaveBtnModes.ADD) {
             Account newAccount = new Account(name, balance);
-            viewModel.create(newAccount);
+            repo.create(newAccount);
         }
         finish();
     }
