@@ -16,4 +16,5 @@
     <string name="currency_symbol_yen">¥ </string>
     <string name="currency_symbol_rupee">₹ </string>
     <string name="select_category">Select Category:</string>
+    <string name="account_name">Account Name</string>
 </resources>
