@@ -58,7 +58,7 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         }
 
         // update accounts balance
-        var rawTransactions = rawTransactionsSource.load();
+        var rawTransactions = RAW_TRANSACTIONS_SOURCE.load();
         for (var rawTransaction : rawTransactions) {
             var account = IDmapAccount.get(rawTransaction.getACCOUNT_ID());
             account.updateBalance(rawTransaction.getAMOUNT());
