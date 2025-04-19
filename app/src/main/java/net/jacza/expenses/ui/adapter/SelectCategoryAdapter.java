@@ -1,10 +1,11 @@
 package net.jacza.expenses.ui.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,8 +22,6 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
     private List<Category> categoryList;
     private OnCategoryClickListener listener;
     private Category selectedCategory;
-    private Context context;
-
 
     public SelectCategoryAdapter(List<Category> categoryList, OnCategoryClickListener listener) {
         this.categoryList = categoryList;
@@ -40,13 +39,37 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
     @Override
     public void onBindViewHolder(@NonNull SelectCategoryViewHolder holder, int position) {
         Category category = categoryList.get(position);
+        Context context = holder.itemView.getContext();
+
         holder.bind(category);
 
+        boolean isSelected = category.equals(selectedCategory);
+
+        int colorPrimary = getThemeColor(context, com.google.android.material.R.attr.colorPrimary);
+        int colorOnPrimary = getThemeColor(context, com.google.android.material.R.attr.colorOnPrimary);
+
+        if (isSelected) {
+            // Filled button style
+            holder.categoryButton.setBackgroundTintList(ColorStateList.valueOf(colorPrimary));
+            holder.categoryButton.setTextColor(colorOnPrimary);
+            holder.categoryButton.setStrokeWidth(0);
+        } else {
+            // Outlined button style
+            holder.categoryButton.setBackgroundTintList(ColorStateList.valueOf(android.graphics.Color.TRANSPARENT));
+            holder.categoryButton.setTextColor(colorPrimary);
+            holder.categoryButton.setStrokeColor(ColorStateList.valueOf(colorPrimary));
+            holder.categoryButton.setStrokeWidth(2);
+        }
 
         holder.categoryButton.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onCategoryClick(category);
             }
+            Category previous = selectedCategory;
+            selectedCategory = category;
+
+            notifyItemChanged(categoryList.indexOf(previous));
+            notifyItemChanged(holder.getAdapterPosition());
         });
     }
 
@@ -55,8 +78,14 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
         return categoryList.size();
     }
 
+    public void setSelectedCategory(Category category) {
+        this.selectedCategory = category;
+    }
+
+
     static class SelectCategoryViewHolder extends RecyclerView.ViewHolder {
         MaterialButton categoryButton;
+
         public SelectCategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryButton = itemView.findViewById(R.id.pill_shaped_category_btn);
@@ -65,6 +94,12 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
         void bind(Category category) {
             categoryButton.setText(category.getName());
         }
+    }
 
+    // Helper to get themed color
+    private int getThemeColor(Context context, int attr) {
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(attr, typedValue, true);
+        return typedValue.data;
     }
 }

@@ -187,7 +187,11 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
         categoriesRecyclerView.setLayoutManager(layoutManager);
 
         adapter = new SelectCategoryAdapter(categories, this);
+        if (!categories.isEmpty()) {
+            adapter.setSelectedCategory(categories.get(0));
+        }
         categoriesRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
