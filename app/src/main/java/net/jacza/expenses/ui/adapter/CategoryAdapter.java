@@ -18,8 +18,10 @@ import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.activity.CategoryActivity;
+import net.jacza.expenses.ui.activity.CategoryTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
@@ -41,6 +43,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categoryList.get(position);
         holder.bind(category);
+
+        // Set click listener for the filtered transactions
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), CategoryTransactions.class);
+            intent.putExtra("CATEGORY", (Serializable) category);
+            view.getContext().startActivity(intent);
+        });
 
         holder.menuButton.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(view.getContext(), holder.menuButton);
