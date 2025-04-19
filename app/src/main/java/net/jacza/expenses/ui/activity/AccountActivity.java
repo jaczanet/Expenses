@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,7 +85,8 @@ public class AccountActivity extends AppCompatActivity {
     private void saveChanges(SaveBtnModes mode) {
         String name = editTextAccountName.getText().toString().trim();
         if (name.isEmpty()) {
-            name = "N/A";
+            Toast.makeText(this, "Account name cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         double balance;
@@ -92,12 +94,7 @@ public class AccountActivity extends AppCompatActivity {
         if (balanceText.isEmpty()) {
             balance = 0.0;
         } else {
-            try {
-                balance = Double.parseDouble(balanceText);
-            } catch (NumberFormatException e) {
-                Log.e("AccountActivity", "Invalid balance format", e);
-                balance = 0.0;
-            }
+            balance = Double.parseDouble(balanceText);
         }
 
         Repository<Account> repo = AccountsRepository.getInstance();

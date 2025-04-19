@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,7 +67,8 @@ public class CategoryActivity extends AppCompatActivity {
     void saveChanges(SaveBtnModes mode) {
         String name = editTextCategoryName.getText().toString().trim();
         if (name.isEmpty()) {
-            name = "N/A";
+            Toast.makeText(this, "Category name cannot be empty", Toast.LENGTH_LONG).show();
+            return;
         }
         Repository<Category> repo = CategoriesRepository.getInstance();
         if (mode == SaveBtnModes.EDIT && categoryToEdit != null) {
