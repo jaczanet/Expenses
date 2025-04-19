@@ -1,7 +1,10 @@
 package net.jacza.expenses.ui.adapter;
 
 import android.content.Intent;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -60,6 +63,11 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         holder.menuButton.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(view.getContext(), holder.menuButton);
             popupMenu.inflate(R.menu.account_menu);
+            MenuItem deleteItem = popupMenu.getMenu().findItem(R.id.menu_delete);
+            SpannableString s = new SpannableString(deleteItem.getTitle());
+            s.setSpan(new ForegroundColorSpan(view.getContext().getColor(R.color.delete_opt_color)), 0, s.length(), 0);
+            deleteItem.setTitle(s);
+
             popupMenu.setOnMenuItemClickListener(item -> {
                 // Handle menu item clicks here
                 if (item.getItemId() == R.id.menu_edit) {
@@ -69,7 +77,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
                     view.getContext().startActivity(intent);
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
-                    // Delete the account
                     try{
                         SafeDelete.account(account);
                         notifyAccountRemoved(position, view);

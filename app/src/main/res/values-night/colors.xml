@@ -143,4 +143,5 @@
     <color name="md_theme_surfaceContainerHighest_highContrast">#45474C</color>
     <color name="income_color">#4CAF50</color>
     <color name="expense_color">#FF5555</color>
+    <color name="delete_opt_color">#FF5555</color>
 </resources>
