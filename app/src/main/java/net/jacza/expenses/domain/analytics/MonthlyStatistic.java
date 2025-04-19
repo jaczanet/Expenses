@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class MonthlyStatistic {
 
     private int year;
-    private Month month;
+    private int month;
     private ArrayList<CategoryWithAmount> categoriesWithAmount;
 
-    public MonthlyStatistic(int year, Month month) {
+    public MonthlyStatistic(int year, int month) {
         this.year = year;
         this.month = month;
         this.categoriesWithAmount = new ArrayList<>();
@@ -18,11 +18,15 @@ public class MonthlyStatistic {
         return year;
     }
 
-    public Month getMonth() {
+    public int getMonth() {
         return month;
     }
 
     public ArrayList<CategoryWithAmount> getCategoriesWithAmount() {
         return categoriesWithAmount;
+    }
+
+    void addCategoryWithAmount(CategoryWithAmount categoryWithAmount){
+        categoriesWithAmount.add(categoryWithAmount);
     }
 }
