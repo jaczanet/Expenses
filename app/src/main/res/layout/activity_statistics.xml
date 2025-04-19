@@ -23,7 +23,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:text="Statistics"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toTopOf="parent" />
