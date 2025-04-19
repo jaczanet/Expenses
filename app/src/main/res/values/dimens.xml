@@ -2,4 +2,5 @@
 <resources>
     <dimen name="corner_radius_regular">6dp</dimen>
     <dimen name="corner_radius_large">16dp</dimen>
+    <dimen name="addBtn_corner_radius">20dp</dimen>
 </resources>
