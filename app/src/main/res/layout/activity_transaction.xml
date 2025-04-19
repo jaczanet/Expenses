@@ -124,12 +124,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/note_input_layout" />
 
-        <EditText
-            android:id="@+id/etNote"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/accountNameInputLayout"
+            style="@style/Widget.Design.TextInputLayout"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:hint="@string/note" />
+            android:hint="@string/note">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
