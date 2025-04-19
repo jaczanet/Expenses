@@ -2,6 +2,7 @@ package net.jacza.expenses.ui.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,13 +43,14 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
         Context context = holder.itemView.getContext();
 
         holder.bind(category);
-
-        boolean isSelected = category.equals(selectedCategory);
-
+        boolean isSelected = category.getID().equals(selectedCategory.getID());
+        Log.d("SelectCategoryAdapter", "Selected ID: " + selectedCategory.getID());
+        Log.d("SelectCategoryAdapter", "Current ID: " + category.getID());
         int colorPrimary = getThemeColor(context, com.google.android.material.R.attr.colorPrimary);
         int colorOnPrimary = getThemeColor(context, com.google.android.material.R.attr.colorOnPrimary);
 
         if (isSelected) {
+
             // Filled button style
             holder.categoryButton.setBackgroundTintList(ColorStateList.valueOf(colorPrimary));
             holder.categoryButton.setTextColor(colorOnPrimary);
