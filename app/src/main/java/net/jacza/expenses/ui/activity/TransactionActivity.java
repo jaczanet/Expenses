@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +55,9 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     private SaveBtnModes mode;
     private List<Category> categories;
     private SelectCategoryAdapter adapter;
+    private Repository<Category> categoryRepo = CategoriesRepository.getInstance();
+    private Repository<Account> accountRepo = AccountsRepository.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +122,18 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
             }
         } else if (mode == SaveBtnModes.ADD) {
             tvActivityEvent.setText("Add New Transaction");
+            List<Account> accounts = accountRepo.read();
+            if (!accounts.isEmpty()) {
+                selectedAccount = accounts.get(0);
+                autoCompleteAccount.setText(selectedAccount.getName(), false);
+
+            } else {
+
+            }
+            List<Category> categories = categoryRepo.read();
+            if (!categories.isEmpty()) {
+                selectedCategory = categories.get(0);
+            }
         }
     }
 
@@ -184,6 +200,22 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
             updateTransaction();
             saveTransaction(transactionToEdit);
         } else if (mode == SaveBtnModes.ADD) {
+            List<Account> accounts = accountRepo.read();
+            List<Category> categories = categoryRepo.read();
+
+            if (accounts.isEmpty() || categories.isEmpty()) {
+                String message = "";
+                if (accounts.isEmpty() && categories.isEmpty()) {
+                    message = "Please create at least one Account and one Category to add a transaction.";
+                } else if (accounts.isEmpty()) {
+                    message = "Please create at least one Account to add a transaction.";
+                } else if (categories.isEmpty()) {
+                    message = "Please create at least one Category to add a transaction.";
+                }
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                return;
+            }
+
             Transaction newTransaction = createNewTransaction();
             if (newTransaction != null) {
                 saveTransaction(newTransaction);
@@ -212,31 +244,31 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
         }
     }
 
+    private Long generateTimestampForNewTransaction() {
+        Long timestamp;
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTimeInMillis(selectedDateMillis);
+
+        java.util.Calendar now = java.util.Calendar.getInstance();
+        calendar.set(java.util.Calendar.HOUR_OF_DAY, now.get(java.util.Calendar.HOUR_OF_DAY));
+        calendar.set(java.util.Calendar.MINUTE, now.get(java.util.Calendar.MINUTE));
+        calendar.set(java.util.Calendar.SECOND, now.get(java.util.Calendar.SECOND));
+        calendar.set(java.util.Calendar.MILLISECOND, now.get(java.util.Calendar.MILLISECOND));
+
+        return timestamp = calendar.getTimeInMillis();
+    }
+
     private Transaction createNewTransaction() {
         String noteText = note.getText().toString();
         double amount = 0.0;
         if (!etTransactionAmount.getText().toString().isEmpty()){
             amount = Double.parseDouble(etTransactionAmount.getText().toString());
         }
-        Account account = null;
-        if(selectedAccount == null){
-            account = new Account("N/A", 0.0);
-            Repository<Account> accountRepo = AccountsRepository.getInstance();
-            accountRepo.create(account);
-        } else {
-            account = selectedAccount;
-        }
 
-        Category category = null;
-        if(selectedCategory == null){
-            category = new Category("N/A");
-            Repository<Category> categoryRepo = CategoriesRepository.getInstance();
-            categoryRepo.create(category);
-        } else {
-            category = selectedCategory;
-        }
+        Account account = selectedAccount;
+        Category category = selectedCategory;
+        Long timestamp = generateTimestampForNewTransaction();
 
-        Long timestamp = selectedDateMillis;
         return new Transaction(timestamp, amount, noteText, category, account);
     }
 
