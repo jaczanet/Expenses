@@ -2,6 +2,7 @@ package net.jacza.expenses.data.common;
 
 import java.io.File;
 import java.util.ArrayList;
+import net.jacza.expenses.App;
 import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.util.TextFileHandler;
 
@@ -12,8 +13,8 @@ public abstract class LocalFileDataSource<T> implements DataSource<T> {
 
     private final TextFileHandler FILE;
 
-    protected LocalFileDataSource(File fileHandle) {
-        FILE = new TextFileHandler(fileHandle);
+    protected LocalFileDataSource(String fileName) {
+        FILE = new TextFileHandler(new File(App.getContext().getFilesDir(), fileName));
     }
 
     @Override
