@@ -65,8 +65,8 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
         initUi();
         setAmountInputFilter();
         setAutoCompAccount();
-        setFlexBoxLayout();
         setActivityTextFields(mode, getIntent());
+        setFlexBoxLayout();
         selectDateBtn.setOnClickListener(v -> showDatePicker());
 
         // Initialize selectedDateMillis
@@ -186,7 +186,11 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
 
         adapter = new SelectCategoryAdapter(categories, this);
         if (!categories.isEmpty()) {
-            adapter.setSelectedCategory(categories.get(0));
+            if(mode == SaveBtnModes.ADD) {
+                adapter.setSelectedCategory(categories.get(0));
+            } else {
+                adapter.setSelectedCategory(transactionToEdit.getCategory());
+            }
         }
         categoriesRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
