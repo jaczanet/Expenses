@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:title="page_title"
-            app:titleTextAppearance="@style/ToolbarTitleBold" />
+            app:titleTextAppearance="@style/ToolbarTitleBold"
+            app:menu="@menu/top_app_bar_menu"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
