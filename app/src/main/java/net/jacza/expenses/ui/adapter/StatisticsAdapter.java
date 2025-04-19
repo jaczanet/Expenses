@@ -49,10 +49,10 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
         }
 
         public void bind(MonthlyStatistic monthlyStatistic){
-            int monthNumber = monthlyStatistic.getMonth();
+            int monthNumber = monthlyStatistic.getMONTH();
             String month = new DateFormatSymbols().getMonths()[monthNumber - 1];
 
-            textViewDate.setText( month + " " + monthlyStatistic.getYear());
+            textViewDate.setText( month + " " + monthlyStatistic.getYEAR());
 
             CategoryWithAmountAdapter adapter = new CategoryWithAmountAdapter(monthlyStatistic.getCategoriesWithAmount());
             recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
