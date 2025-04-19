@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,8 @@ import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
+import net.jacza.expenses.domain.FoundAssociatedTransactionException;
+import net.jacza.expenses.domain.SafeDelete;
 import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.activity.CategoryTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
@@ -62,11 +65,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                     view.getContext().startActivity(intent);
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
-                    // Delete the category
-                    repository.delete(category);
-                    notifyCategoryRemoved(position, view);
-                    setList(repository.read());
-                    return true;
+                    // Delete the account
+                    try{
+                        SafeDelete.category(category);
+                        notifyCategoryRemoved(position, view);
+                        setList(repository.read());
+                    }catch (FoundAssociatedTransactionException e){
+                        Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return false;
             });
