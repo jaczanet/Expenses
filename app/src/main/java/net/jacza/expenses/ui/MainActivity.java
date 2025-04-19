@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupEdgeToEdge();
-        DynamicColors.applyToActivityIfAvailable(this);
         initViews();
         setupBottomNavigation();
         setUpOpenStatisticBtn();
