@@ -18,18 +18,19 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
 
     // Singleton pattern with eager initialization
 
-    private static final AccountsRepository instance = new AccountsRepository();
+    private static final AccountsRepository INSTANCE = new AccountsRepository();
 
-    public static AccountsRepository getInstance() {
-        return instance;
+    public static AccountsRepository getINSTANCE() {
+        return INSTANCE;
     }
 
     private AccountsRepository() {}
 
     // data sources
 
-    private final DataSource<RawAccount> rawAccountsSource = new RawAccountsDataSource();
-    private final DataSource<RawTransaction> rawTransactionsSource = new RawTransactionsDataSource();
+    private final DataSource<RawAccount> RAW_ACCOUNTS_SOURCE = new RawAccountsDataSource();
+    private final DataSource<RawTransaction> RAW_TRANSACTIONS_SOURCE =
+        new RawTransactionsDataSource();
 
     // repository methods
 
@@ -44,7 +45,7 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         var IDmapAccount = new HashMap<UUID, Account>();
 
         // read from source
-        var rawAccounts = rawAccountsSource.load();
+        var rawAccounts = RAW_ACCOUNTS_SOURCE.load();
 
         // convert
         for (var rawAccount : rawAccounts) {
@@ -76,6 +77,6 @@ public class AccountsRepository extends IdentifiableRepository<Account> {
         }
 
         // write to source
-        rawAccountsSource.save(rawAccounts);
+        RAW_ACCOUNTS_SOURCE.save(rawAccounts);
     }
 }

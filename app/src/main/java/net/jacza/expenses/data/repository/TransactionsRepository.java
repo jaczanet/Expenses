@@ -18,17 +18,18 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
 
     // Singleton pattern with eager initialization
 
-    private static final TransactionsRepository instance = new TransactionsRepository();
+    private static final TransactionsRepository INSTANCE = new TransactionsRepository();
 
-    public static TransactionsRepository getInstance() {
-        return instance;
+    public static TransactionsRepository getINSTANCE() {
+        return INSTANCE;
     }
 
     private TransactionsRepository() {}
 
     // data sources
 
-    private final DataSource<RawTransaction> rawTransactionsSource = new RawTransactionsDataSource();
+    private final DataSource<RawTransaction> RAW_TRANSACTIONS_SOURCE =
+        new RawTransactionsDataSource();
 
     // repository methods
 
@@ -43,13 +44,13 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
         var IDmapAccount = new HashMap<UUID, Transaction>();
 
         // read categories
-        var categories = CategoriesRepository.getInstance().readMap();
+        var categories = CategoriesRepository.getINSTANCE().readMap();
 
         // read accounts
-        var accounts = AccountsRepository.getInstance().readMap();
+        var accounts = AccountsRepository.getINSTANCE().readMap();
 
         // read from source
-        var rawTransactions = rawTransactionsSource.load();
+        var rawTransactions = RAW_TRANSACTIONS_SOURCE.load();
 
         // convert, inject category and account
         for (var rawTransaction : rawTransactions) {
@@ -91,6 +92,6 @@ public class TransactionsRepository extends IdentifiableRepository<Transaction> 
         }
 
         // write to source
-        rawTransactionsSource.save(rawTransactions);
+        RAW_TRANSACTIONS_SOURCE.save(rawTransactions);
     }
 }

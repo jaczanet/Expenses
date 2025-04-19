@@ -2,31 +2,42 @@ package net.jacza.expenses.domain.analytics;
 
 import java.util.ArrayList;
 
+/*
+ * Data class wrapping monthly statistics data.
+ */
 public class MonthlyStatistic {
 
-    private int year;
-    private int month;
+    // attributes
+
+    private final int YEAR;
+    private final int MONTH;
     private ArrayList<CategoryWithAmount> categoriesWithAmount;
 
+    // constructor
+
     public MonthlyStatistic(int year, int month) {
-        this.year = year;
-        this.month = month;
+        this.YEAR = year;
+        this.MONTH = month;
         this.categoriesWithAmount = new ArrayList<>();
     }
 
-    public int getYear() {
-        return year;
+    // getters
+
+    public int getYEAR() {
+        return YEAR;
     }
 
-    public int getMonth() {
-        return month;
+    public int getMONTH() {
+        return MONTH;
     }
 
     public ArrayList<CategoryWithAmount> getCategoriesWithAmount() {
         return categoriesWithAmount;
     }
 
-    void addCategoryWithAmount(CategoryWithAmount categoryWithAmount){
+    // methods
+
+    public void addCategoryWithAmount(CategoryWithAmount categoryWithAmount) {
         categoriesWithAmount.add(categoryWithAmount);
     }
 }

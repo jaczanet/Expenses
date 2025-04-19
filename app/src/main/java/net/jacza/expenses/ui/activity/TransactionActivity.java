@@ -9,19 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.material.datepicker.MaterialDatePicker;
-
+import java.util.List;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
@@ -34,8 +32,6 @@ import net.jacza.expenses.ui.adapter.SelectCategoryAdapter;
 import net.jacza.expenses.ui.interfaces.OnCategoryClickListener;
 import net.jacza.expenses.ui.util.DecimalDigitsInputFilter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
-
-import java.util.List;
 
 public class TransactionActivity extends AppCompatActivity implements OnCategoryClickListener {
 
@@ -55,9 +51,8 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     private SaveBtnModes mode;
     private List<Category> categories;
     private SelectCategoryAdapter adapter;
-    private Repository<Category> categoryRepo = CategoriesRepository.getInstance();
-    private Repository<Account> accountRepo = AccountsRepository.getInstance();
-
+    private Repository<Category> categoryRepo = CategoriesRepository.getINSTANCE();
+    private Repository<Account> accountRepo = AccountsRepository.getINSTANCE();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +84,14 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     private void setupEdgeToEdge() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_transaction);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.transactionActivity), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById(R.id.transactionActivity),
+            (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            }
+        );
     }
 
     private void initUi() {
@@ -126,10 +124,7 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
             if (!accounts.isEmpty()) {
                 selectedAccount = accounts.get(0);
                 autoCompleteAccount.setText(selectedAccount.getName(), false);
-
-            } else {
-
-            }
+            } else {}
             List<Category> categories = categoryRepo.read();
             if (!categories.isEmpty()) {
                 selectedCategory = categories.get(0);
@@ -138,16 +133,14 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     }
 
     private void setAmountInputFilter() {
-        etTransactionAmount.setFilters(new InputFilter[]{
-                new DecimalDigitsInputFilter(10, 2)
-        });
+        etTransactionAmount.setFilters(new InputFilter[] { new DecimalDigitsInputFilter(10, 2) });
     }
 
     private void showDatePicker() {
         MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select date")
-                .setSelection(getValidDateInMillis())
-                .build();
+            .setTitleText("Select date")
+            .setSelection(getValidDateInMillis())
+            .build();
 
         datePicker.addOnPositiveButtonClickListener(selection -> {
             selectedDateMillis = selection;
@@ -157,19 +150,24 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     }
 
     private Long getValidDateInMillis() {
-        return (selectedDateMillis != null) ? selectedDateMillis : (transactionToEdit != null ? transactionToEdit.getTimestamp() : MaterialDatePicker.todayInUtcMilliseconds());
+        return (selectedDateMillis != null)
+            ? selectedDateMillis
+            : (transactionToEdit != null
+                    ? transactionToEdit.getTimestamp()
+                    : MaterialDatePicker.todayInUtcMilliseconds());
     }
 
     private void setAutoCompAccount() {
-        List<Account> accountList = AccountsRepository.getInstance().read();
-        List<String> accountNames = accountList.stream()
-                .map(Account::getName)
-                .collect(java.util.stream.Collectors.toList());
+        List<Account> accountList = AccountsRepository.getINSTANCE().read();
+        List<String> accountNames = accountList
+            .stream()
+            .map(Account::getName)
+            .collect(java.util.stream.Collectors.toList());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_dropdown_item_1line,
-                accountNames
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            accountNames
         );
         autoCompleteAccount.setAdapter(adapter);
         autoCompleteAccount.setThreshold(1);
@@ -180,7 +178,7 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     }
 
     private void setFlexBoxLayout() {
-        categories = CategoriesRepository.getInstance().read();
+        categories = CategoriesRepository.getINSTANCE().read();
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
         layoutManager.setAlignItems(AlignItems.STRETCH);
@@ -210,7 +208,8 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
             if (accounts.isEmpty() || categories.isEmpty()) {
                 String message = "";
                 if (accounts.isEmpty() && categories.isEmpty()) {
-                    message = "Please create at least one Account and one Category to add a transaction.";
+                    message =
+                        "Please create at least one Account and one Category to add a transaction.";
                 } else if (accounts.isEmpty()) {
                     message = "Please create at least one Account to add a transaction.";
                 } else if (categories.isEmpty()) {
@@ -228,7 +227,6 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     }
 
     private void updateTransaction() {
-
         if (selectedAccount != null && !selectedAccount.equals(transactionToEdit.getAccount())) {
             transactionToEdit.setAccount(selectedAccount);
         }
@@ -243,7 +241,10 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
         if (selectedCategory != null && !selectedCategory.equals(transactionToEdit.getCategory())) {
             transactionToEdit.setCategory(selectedCategory);
         }
-        if (selectedDateMillis != null && !selectedDateMillis.equals(transactionToEdit.getTimestamp())) {
+        if (
+            selectedDateMillis != null &&
+            !selectedDateMillis.equals(transactionToEdit.getTimestamp())
+        ) {
             transactionToEdit.setTimestamp(selectedDateMillis);
         }
     }
@@ -265,7 +266,7 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     private Transaction createNewTransaction() {
         String noteText = note.getText().toString();
         double amount = 0.0;
-        if (!etTransactionAmount.getText().toString().isEmpty()){
+        if (!etTransactionAmount.getText().toString().isEmpty()) {
             amount = Double.parseDouble(etTransactionAmount.getText().toString());
         }
 
@@ -277,7 +278,7 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     }
 
     private void saveTransaction(Transaction transactionToSave) {
-        Repository<Transaction> repo = TransactionsRepository.getInstance();
+        Repository<Transaction> repo = TransactionsRepository.getINSTANCE();
         if (mode == SaveBtnModes.EDIT) {
             repo.update(transactionToSave);
         } else if (mode == SaveBtnModes.ADD) {

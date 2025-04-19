@@ -1,64 +1,91 @@
 package net.jacza.expenses.domain.analytics;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.repository.TransactionsRepository;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
 
+/*
+ * Class exposing methods to compute statistics.
+ */
 public class GetStatisticsUseCase {
 
-    private static ZoneId timezone = ZoneId.of("Europe/Helsinki");
+    // defaults
+    private static final ZoneId TIMEZONE = ZoneId.of("Europe/Helsinki");
 
-    private static final Repository<Transaction> TRANSACTION_REPOSITORY = TransactionsRepository.getInstance();
+    // repositories
+    private static final Repository<Transaction> TRANSACTION_REPOSITORY =
+        TransactionsRepository.getINSTANCE();
 
-    private GetStatisticsUseCase(){}
+    // override the constructor to avoid instantiation
+    private GetStatisticsUseCase() {}
 
-    public static ArrayList<MonthlyStatistic> getMonthlyStatistics(){
+    // exposed methods
+    public static ArrayList<MonthlyStatistic> getMonthlyStatistics() {
+        // initialize list of monthly statistics
         var monthlyStats = new ArrayList<MonthlyStatistic>();
 
+        // load transactions from repository
         var transactions = TRANSACTION_REPOSITORY.read();
 
+        // iterate over transactions for every year
         var transGroupedByYear = groupTransactionsByYear(transactions);
-        for(int year : transGroupedByYear.keySet()){
+        for (int year : transGroupedByYear.keySet()) {
             var currentYearTrans = transGroupedByYear.get(year);
 
+            // iterate over transactions of every month of the current year
             var currentYearTransGroupedByMonth = groupTransactionsByMonth(currentYearTrans);
-            for(int month : currentYearTransGroupedByMonth.keySet()){
+            for (int month : currentYearTransGroupedByMonth.keySet()) {
                 var currentYearMonthTrans = currentYearTransGroupedByMonth.get(month);
 
+                // initialize monthly statistic
                 var monthStat = new MonthlyStatistic(year, month);
 
+                // compute transaction delta by category
                 var amountByCategory = new HashMap<Category, Double>();
-                for(var transaction : currentYearMonthTrans){
+                for (var transaction : currentYearMonthTrans) {
                     var category = transaction.getCategory();
                     var amount = transaction.getAmount();
-                    amountByCategory.merge(category, amount, (a, b) -> a+b);
+                    amountByCategory.merge(category, amount, (a, b) -> a + b);
                 }
 
-                for(var category : amountByCategory.keySet()){
+                // store all the non-empty deltas
+                for (var category : amountByCategory.keySet()) {
                     double amount = amountByCategory.get(category);
-                    if(amount != 0){
-                       monthStat.addCategoryWithAmount(new CategoryWithAmount(category, amount));
+                    if (amount != 0) {
+                        monthStat.addCategoryWithAmount(new CategoryWithAmount(category, amount));
                     }
                 }
 
-                monthlyStats.add(monthStat);
+                // store the monthly statistic only if it is not empty
+                if (!monthStat.getCategoriesWithAmount().isEmpty()) {
+                    monthlyStats.add(monthStat);
+                }
             }
         }
+
+        // sort from most recent to least recent
+        monthlyStats.sort(
+            (a, b) ->
+                -1 *
+                Integer.compare(a.getYEAR() * 100 + a.getMONTH(), b.getYEAR() * 100 + b.getMONTH())
+        );
 
         return monthlyStats;
     }
 
     // helper functions
-    private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByYear(ArrayList<Transaction> transactions){
+    private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByYear(
+        ArrayList<Transaction> transactions
+    ) {
         var transByYear = new HashMap<Integer, ArrayList<Transaction>>();
 
-        for(var tran : transactions){
+        for (var tran : transactions) {
             int year = getYearFromTransaction(tran);
 
             if (!transByYear.containsKey(year)) {
@@ -71,17 +98,19 @@ public class GetStatisticsUseCase {
         return transByYear;
     }
 
-    private static int getYearFromTransaction(Transaction transaction){
+    private static int getYearFromTransaction(Transaction transaction) {
         Instant instant = Instant.ofEpochMilli(transaction.getTimestamp());
-        ZonedDateTime dateTime = instant.atZone(timezone);
+        ZonedDateTime dateTime = instant.atZone(TIMEZONE);
         int year = dateTime.getYear();
         return year;
     }
 
-    private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByMonth(ArrayList<Transaction> transactions){
+    private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByMonth(
+        ArrayList<Transaction> transactions
+    ) {
         var transByYear = new HashMap<Integer, ArrayList<Transaction>>();
 
-        for(var tran : transactions){
+        for (var tran : transactions) {
             int month = getMonthFromTransaction(tran);
 
             if (!transByYear.containsKey(month)) {
@@ -96,9 +125,8 @@ public class GetStatisticsUseCase {
 
     private static int getMonthFromTransaction(Transaction transaction) {
         Instant instant = Instant.ofEpochMilli(transaction.getTimestamp());
-        ZonedDateTime dateTime = instant.atZone(timezone);
+        ZonedDateTime dateTime = instant.atZone(TIMEZONE);
         int month = dateTime.getMonthValue();
         return month;
     }
-
 }

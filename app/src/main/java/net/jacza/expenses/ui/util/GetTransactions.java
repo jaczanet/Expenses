@@ -12,7 +12,7 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
  */
 public class GetTransactions {
 
-    private static final Repository<Transaction> transRepo = TransactionsRepository.getInstance();
+    private static final Repository<Transaction> transRepo = TransactionsRepository.getINSTANCE();
 
     // override the constructor to avoid instantiation
     private GetTransactions() {}

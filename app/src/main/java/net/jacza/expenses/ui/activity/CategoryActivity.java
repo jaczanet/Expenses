@@ -6,21 +6,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
-
 public class CategoryActivity extends AppCompatActivity {
+
     Button saveBtn, closeBtn;
     private EditText editTextCategoryName;
     private TextView tvActivityEvent;
@@ -32,11 +30,14 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_category);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.categoryActivity), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById(R.id.categoryActivity),
+            (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            }
+        );
 
         // Bind UI elements
         tvActivityEvent = findViewById(R.id.tvActivityEvent);
@@ -52,14 +53,14 @@ public class CategoryActivity extends AppCompatActivity {
         closeBtn.setOnClickListener(v -> finish());
     }
 
-    private void setActivityTextFields(SaveBtnModes mode, Intent intent){
+    private void setActivityTextFields(SaveBtnModes mode, Intent intent) {
         if (mode == SaveBtnModes.EDIT) {
             tvActivityEvent.setText("Edit Category");
             categoryToEdit = (Category) intent.getSerializableExtra("CATEGORY TO EDIT");
             if (categoryToEdit != null) {
                 editTextCategoryName.setText(categoryToEdit.getName());
             }
-        } else if (mode == SaveBtnModes.ADD){
+        } else if (mode == SaveBtnModes.ADD) {
             tvActivityEvent.setText("Add New Category");
         }
     }
@@ -70,7 +71,7 @@ public class CategoryActivity extends AppCompatActivity {
             Toast.makeText(this, "Category name cannot be empty", Toast.LENGTH_LONG).show();
             return;
         }
-        Repository<Category> repo = CategoriesRepository.getInstance();
+        Repository<Category> repo = CategoriesRepository.getINSTANCE();
         if (mode == SaveBtnModes.EDIT && categoryToEdit != null) {
             categoryToEdit.setName(name);
             repo.update(categoryToEdit);

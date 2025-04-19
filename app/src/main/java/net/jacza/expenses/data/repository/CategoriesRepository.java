@@ -16,17 +16,17 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
 
     // Singleton pattern with eager initialization
 
-    private static final CategoriesRepository instance = new CategoriesRepository();
+    private static final CategoriesRepository INSTANCE = new CategoriesRepository();
 
-    public static CategoriesRepository getInstance() {
-        return instance;
+    public static CategoriesRepository getINSTANCE() {
+        return INSTANCE;
     }
 
     private CategoriesRepository() {}
 
     // data sources
 
-    private final DataSource<RawCategory> rawCategoriesSource = new RawCategoriesDataSource();
+    private final DataSource<RawCategory> RAW_CATEGORIES_SOURCE = new RawCategoriesDataSource();
 
     // repository methods
 
@@ -41,7 +41,7 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         var IDmapCategory = new HashMap<UUID, Category>();
 
         // read from source
-        var rawCategories = rawCategoriesSource.load();
+        var rawCategories = RAW_CATEGORIES_SOURCE.load();
 
         // convert
         for (var rawCategory : rawCategories) {
@@ -62,6 +62,6 @@ public class CategoriesRepository extends IdentifiableRepository<Category> {
         }
 
         // write to source
-        rawCategoriesSource.save(rawCategories);
+        RAW_CATEGORIES_SOURCE.save(rawCategories);
     }
 }

@@ -9,19 +9,20 @@ import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 
 /*
- * Class defining logic for safe deletion of objects from the repository.
+ * Class exposing methods for safe deletion of objects from the repository.
  */
 public class SafeDeleteUseCase {
 
     // repositories
-    private static final Repository<Transaction> transRepo = TransactionsRepository.getInstance();
-    private static final Repository<Category> categsRepo = CategoriesRepository.getInstance();
-    private static final Repository<Account> accsRepo = AccountsRepository.getInstance();
+    private static final Repository<Transaction> transRepo = TransactionsRepository.getINSTANCE();
+    private static final Repository<Category> categsRepo = CategoriesRepository.getINSTANCE();
+    private static final Repository<Account> accsRepo = AccountsRepository.getINSTANCE();
 
     // override the constructor to avoid instantiation
     private SafeDeleteUseCase() {}
 
-    // static methods
+    // exposed methods
+
     public static void category(Category entry) throws FoundAssociatedTransactionException {
         var transactions = transRepo.read();
         for (var tran : transactions) {

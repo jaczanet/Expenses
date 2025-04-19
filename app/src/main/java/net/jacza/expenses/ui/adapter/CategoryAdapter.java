@@ -11,12 +11,11 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.snackbar.Snackbar;
-
+import java.io.Serializable;
+import java.util.List;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
@@ -27,12 +26,10 @@ import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.activity.CategoryTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
-import java.io.Serializable;
-import java.util.List;
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
     private List<Category> categoryList;
-    private Repository<Category> repository = CategoriesRepository.getInstance();
+    private Repository<Category> repository = CategoriesRepository.getINSTANCE();
 
     public CategoryAdapter(List<Category> categoryList) {
         this.categoryList = categoryList;
@@ -41,7 +38,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(
+            R.layout.category_card,
+            parent,
+            false
+        );
         return new CategoryViewHolder(view);
     }
 
@@ -62,7 +63,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             popupMenu.inflate(R.menu.category_menu);
             MenuItem deleteItem = popupMenu.getMenu().findItem(R.id.menu_delete);
             SpannableString s = new SpannableString(deleteItem.getTitle());
-            s.setSpan(new ForegroundColorSpan(view.getContext().getColor(R.color.delete_opt_color)), 0, s.length(), 0);
+            s.setSpan(
+                new ForegroundColorSpan(view.getContext().getColor(R.color.delete_opt_color)),
+                0,
+                s.length(),
+                0
+            );
             deleteItem.setTitle(s);
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.menu_edit) {
@@ -73,11 +79,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
                     // Delete the account
-                    try{
+                    try {
                         SafeDeleteUseCase.category(category);
                         notifyCategoryRemoved(position, view);
                         setList(repository.read());
-                    }catch (FoundAssociatedTransactionException e){
+                    } catch (FoundAssociatedTransactionException e) {
                         Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -96,20 +102,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         this.categoryList = newList;
     }
 
-    public void notifyCategoryRemoved(int position, View view){
+    public void notifyCategoryRemoved(int position, View view) {
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
         Category tempCateg = categoryList.get(position);
-        String categName =tempCateg.getName();
+        String categName = tempCateg.getName();
 
         Snackbar.make(view, "Undo Deletion of : " + categName, Snackbar.LENGTH_LONG)
-                .setAction ("UNDO", v -> {
-                    categoryList.add(position, tempCateg);
-                    repository.create(tempCateg);
-                    notifyItemInserted(position);
-                    notifyItemRangeChanged (position, getItemCount());
-                })
-                .show();
+            .setAction("UNDO", v -> {
+                categoryList.add(position, tempCateg);
+                repository.create(tempCateg);
+                notifyItemInserted(position);
+                notifyItemRangeChanged(position, getItemCount());
+            })
+            .show();
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
