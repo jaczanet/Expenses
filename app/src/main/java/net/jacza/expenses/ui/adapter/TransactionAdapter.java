@@ -125,10 +125,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
             double amount = transaction.getAmount();
             if (amount >= 0) {
-                tvAmount.setText(String.format(Locale.getDefault(), "+ €%.2f", amount));
+                tvAmount.setText(String.format(Locale.getDefault(), "+ %.2f€", amount));
                 tvAmount.setTextColor(itemView.getContext().getColor(R.color.income_color));
             } else {
-                tvAmount.setText(String.format(Locale.getDefault(), "- €%.2f", Math.abs(amount)));
+                tvAmount.setText(String.format(Locale.getDefault(), "- %.2f€", Math.abs(amount)));
                 tvAmount.setTextColor(itemView.getContext().getColor(R.color.expense_color));
             }
 

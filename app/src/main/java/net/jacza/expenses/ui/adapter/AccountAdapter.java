@@ -23,6 +23,7 @@ import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder> {
 
@@ -114,7 +115,15 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
 
         public void bind(Account account) {
             accountName.setText(account.getName());
-            accountBalance.setText(String.valueOf(account.getBalance()));
+
+            double balance = account.getBalance();
+            if (balance >= 0) {
+                accountBalance.setText(String.format(Locale.getDefault(), "+ %.2f€", balance));
+                accountBalance.setTextColor(itemView.getContext().getColor(R.color.income_color));
+            } else {
+                accountBalance.setText(String.format(Locale.getDefault(), "- %.2f€", Math.abs(balance)));
+                accountBalance.setTextColor(itemView.getContext().getColor(R.color.expense_color));
+            }
         }
     }
 }
