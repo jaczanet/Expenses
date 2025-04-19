@@ -33,7 +33,7 @@ public class GetStatisticsUseCase {
 
                 var monthStat = new MonthlyStatistic(year, month);
 
-                var amountByCategory = new HashMap<Category, Double>;
+                var amountByCategory = new HashMap<Category, Double>();
                 for(var transaction : currentYearMonthTrans){
                     var category = transaction.getCategory();
                     var amount = transaction.getAmount();
@@ -56,7 +56,7 @@ public class GetStatisticsUseCase {
 
     // helper functions
     private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByYear(ArrayList<Transaction> transactions){
-        var transByYear = new HashMap<Integer, ArrayList<Transaction>>;
+        var transByYear = new HashMap<Integer, ArrayList<Transaction>>();
 
         for(var tran : transactions){
             int year = getYearFromTransaction(tran);
@@ -79,7 +79,7 @@ public class GetStatisticsUseCase {
     }
 
     private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByMonth(ArrayList<Transaction> transactions){
-        var transByYear = new HashMap<Integer, ArrayList<Transaction>>;
+        var transByYear = new HashMap<Integer, ArrayList<Transaction>>();
 
         for(var tran : transactions){
             int month = getMonthFromTransaction(tran);
