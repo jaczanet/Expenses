@@ -25,6 +25,7 @@ import net.jacza.expenses.domain.safedeletion.SafeDeleteUseCase;
 import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.activity.AccountTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
+import net.jacza.expenses.ui.util.BalanceFormatter;
 
 import java.io.Serializable;
 import java.util.List;
@@ -134,13 +135,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             accountName.setText(account.getName());
 
             double balance = account.getBalance();
-            if (balance >= 0) {
-                accountBalance.setText(String.format(Locale.getDefault(), "+ %.2f€", balance));
-                accountBalance.setTextColor(itemView.getContext().getColor(R.color.income_color));
-            } else {
-                accountBalance.setText(String.format(Locale.getDefault(), "- %.2f€", Math.abs(balance)));
-                accountBalance.setTextColor(itemView.getContext().getColor(R.color.expense_color));
-            }
+            BalanceFormatter.setFormattedBalance(accountBalance, balance, itemView.getContext());
         }
     }
 }

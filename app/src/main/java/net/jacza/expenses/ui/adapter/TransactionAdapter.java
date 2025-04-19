@@ -15,6 +15,7 @@ import com.google.android.material.card.MaterialCardView;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.ui.activity.TransactionActivity;
+import net.jacza.expenses.ui.util.BalanceFormatter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
 import java.text.SimpleDateFormat;
@@ -124,13 +125,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             }
 
             double amount = transaction.getAmount();
-            if (amount >= 0) {
-                tvAmount.setText(String.format(Locale.getDefault(), "+ %.2f€", amount));
-                tvAmount.setTextColor(itemView.getContext().getColor(R.color.income_color));
-            } else {
-                tvAmount.setText(String.format(Locale.getDefault(), "- %.2f€", Math.abs(amount)));
-                tvAmount.setTextColor(itemView.getContext().getColor(R.color.expense_color));
-            }
+            BalanceFormatter.setFormattedBalance(tvAmount, amount, itemView.getContext());
+
 
             // Set OnClickListener for the entire card
             itemView.setOnClickListener(v -> {
