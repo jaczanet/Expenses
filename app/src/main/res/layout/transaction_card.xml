@@ -71,9 +71,9 @@
                 android:layout_marginTop="4dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_tag"/>
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_tag" />
 
                 <TextView
                     android:id="@+id/tvCategory"
@@ -81,7 +81,8 @@
                     android:layout_height="wrap_content"
                     android:text="Shopping"
                     android:textSize="14sp"
-                    android:layout_marginStart="4dp"/>
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginStart="3dp"/>
             </LinearLayout>
         </LinearLayout>
 
