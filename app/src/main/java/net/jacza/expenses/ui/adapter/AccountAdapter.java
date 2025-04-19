@@ -20,8 +20,10 @@ import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.domain.FoundAssociatedTransactionException;
 import net.jacza.expenses.domain.SafeDelete;
 import net.jacza.expenses.ui.activity.AccountActivity;
+import net.jacza.expenses.ui.activity.AccountTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,10 +44,18 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         return new AccountViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull AccountViewHolder holder, int position) {
         Account account = accounts.get(position);
         holder.bind(account);
+
+        // Set click listener for the filtered transactions
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), AccountTransactions.class);
+            intent.putExtra("Account", (Serializable) account);
+            view.getContext().startActivity(intent);
+        });
 
         holder.menuButton.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(view.getContext(), holder.menuButton);
