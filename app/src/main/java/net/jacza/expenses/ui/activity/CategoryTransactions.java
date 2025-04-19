@@ -60,10 +60,10 @@ public class CategoryTransactions extends AppCompatActivity {
 
         if(transactions.size() == 0){
             event = findViewById(R.id.textViewEvent);
-            event.setText("No transactions for this category");
+            event.setText("No transactions with this category");
         }else{
             event = findViewById(R.id.textViewEvent);
-            event.setText("Transactions for " + category.getName());
+            event.setText(category.getName()+" transactions");
         }
 
 
