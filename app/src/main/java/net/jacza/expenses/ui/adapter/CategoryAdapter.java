@@ -21,8 +21,8 @@ import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
-import net.jacza.expenses.domain.FoundAssociatedTransactionException;
-import net.jacza.expenses.domain.SafeDelete;
+import net.jacza.expenses.domain.safedeletion.FoundAssociatedTransactionException;
+import net.jacza.expenses.domain.safedeletion.SafeDeleteUseCase;
 import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.activity.CategoryTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
@@ -74,7 +74,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 } else if (item.getItemId() == R.id.menu_delete) {
                     // Delete the account
                     try{
-                        SafeDelete.category(category);
+                        SafeDeleteUseCase.category(category);
                         notifyCategoryRemoved(position, view);
                         setList(repository.read());
                     }catch (FoundAssociatedTransactionException e){

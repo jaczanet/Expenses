@@ -1,4 +1,4 @@
-package net.jacza.expenses.domain;
+package net.jacza.expenses.domain.safedeletion;
 
 import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.data.model.Category;

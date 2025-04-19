@@ -1,4 +1,4 @@
-package net.jacza.expenses.domain;
+package net.jacza.expenses.domain.safedeletion;
 
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
@@ -11,7 +11,7 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
 /*
  * Class defining logic for safe deletion of objects from the repository.
  */
-public class SafeDelete {
+public class SafeDeleteUseCase {
 
     // repositories
     private static final Repository<Transaction> transRepo = TransactionsRepository.getInstance();
@@ -19,7 +19,7 @@ public class SafeDelete {
     private static final Repository<Account> accsRepo = AccountsRepository.getInstance();
 
     // override the constructor to avoid instantiation
-    private SafeDelete() {}
+    private SafeDeleteUseCase() {}
 
     // static methods
     public static void category(Category entry) throws FoundAssociatedTransactionException {

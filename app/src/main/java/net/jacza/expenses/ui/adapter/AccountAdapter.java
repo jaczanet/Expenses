@@ -20,8 +20,8 @@ import com.google.android.material.snackbar.Snackbar;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
 import net.jacza.expenses.data.model.Account;
-import net.jacza.expenses.domain.FoundAssociatedTransactionException;
-import net.jacza.expenses.domain.SafeDelete;
+import net.jacza.expenses.domain.safedeletion.FoundAssociatedTransactionException;
+import net.jacza.expenses.domain.safedeletion.SafeDeleteUseCase;
 import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.activity.AccountTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
@@ -78,7 +78,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
                     try{
-                        SafeDelete.account(account);
+                        SafeDeleteUseCase.account(account);
                         notifyAccountRemoved(position, view);
                         setList(repo.read());
                     }catch (FoundAssociatedTransactionException e){
