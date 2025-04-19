@@ -20,6 +20,7 @@ import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 import net.jacza.expenses.ui.adapter.TransactionAdapter;
 import net.jacza.expenses.ui.util.GetTransactions;
+import net.jacza.expenses.ui.util.MarginTransactionDecoration;
 
 import java.util.ArrayList;
 
@@ -52,6 +53,7 @@ public class CategoryTransactions extends AppCompatActivity {
         recyclerView = findViewById(R.id.transactionsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new MarginTransactionDecoration(10));
 
         ArrayList<Transaction> transactions = GetTransactions.byCategory(category);
         adapter.setList(transactions);
