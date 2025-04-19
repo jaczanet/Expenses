@@ -26,6 +26,7 @@ public class AccountTransactions extends AppCompatActivity {
     private TransactionAdapter adapter;
     private Button backBtn;
     private TextView event;
+    private TextView empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,12 @@ public class AccountTransactions extends AppCompatActivity {
         ArrayList<Transaction> transactions = GetTransactions.byAccount(account);
         adapter.setList(transactions);
 
+        event = findViewById(R.id.textViewEvent);
+        event.setText(account.getName() + " transactions");
+
         if (transactions.size() == 0) {
-            event = findViewById(R.id.textViewEvent);
-            event.setText("No transactions in this account yet");
-        } else {
-            event = findViewById(R.id.textViewEvent);
-            event.setText(account.getName() + " transactions");
+            empty = findViewById(R.id.textViewEmpty);
+            empty.setText("No transactions in this account yet");
         }
     }
 }

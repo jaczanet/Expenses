@@ -26,6 +26,7 @@ public class CategoryTransactions extends AppCompatActivity {
     private TransactionAdapter adapter;
     private Button backBtn;
     private TextView event;
+    private TextView empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,12 @@ public class CategoryTransactions extends AppCompatActivity {
         ArrayList<Transaction> transactions = GetTransactions.byCategory(category);
         adapter.setList(transactions);
 
+        event = findViewById(R.id.textViewEvent);
+        event.setText(category.getName() + " transactions");
+
         if (transactions.size() == 0) {
-            event = findViewById(R.id.textViewEvent);
-            event.setText("No transactions with this category");
-        } else {
-            event = findViewById(R.id.textViewEvent);
-            event.setText(category.getName() + " transactions");
+            empty = findViewById(R.id.textViewEmpty);
+            empty.setText("No transactions with this category yet");
         }
     }
 }
