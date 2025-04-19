@@ -1,5 +1,6 @@
 package net.jacza.expenses.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -15,20 +16,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.color.DynamicColors;
 
 import net.jacza.expenses.R;
+import net.jacza.expenses.ui.activity.CategoryActivity;
+import net.jacza.expenses.ui.activity.StatisticsActivity;
 import net.jacza.expenses.ui.fragment.AccountFragment;
 import net.jacza.expenses.ui.fragment.CategoryFragment;
 import net.jacza.expenses.ui.fragment.TransactionFragment;
+import net.jacza.expenses.ui.util.SaveBtnModes;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private MaterialToolbar topAppBar;
 
     // Fragment instances
     private TransactionFragment transactionFragment;
     private CategoryFragment categoryFragment;
     private AccountFragment accountFragment;
     private Fragment currentFragment;
-    private MaterialToolbar topAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         DynamicColors.applyToActivityIfAvailable(this);
         initViews();
         setupBottomNavigation();
+        setUpOpenStatisticBtn();
 
         // Set default fragment
         if (savedInstanceState != null) {
@@ -92,12 +97,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setDefaultFragment() {
-        if (bottomNavigationView.getSelectedItemId() == R.id.transactions) {
-            loadFragment(getTransactionFragment());
-        }
-    }
-
     private void loadFragment(Fragment fragment) {
         if (fragment == null || fragment.isAdded()) return;
 
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    // Fragment getters with lazy initialization
+    // Fragment getters
     private TransactionFragment getTransactionFragment() {
         if (transactionFragment == null) {
             transactionFragment = new TransactionFragment();
@@ -127,5 +126,16 @@ public class MainActivity extends AppCompatActivity {
             accountFragment = new AccountFragment();
         }
         return accountFragment;
+    }
+
+    private void setUpOpenStatisticBtn(){
+        topAppBar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.stats) {
+                Intent intent = new Intent(this, StatisticsActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
     }
 }
