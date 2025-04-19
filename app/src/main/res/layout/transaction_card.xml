@@ -71,8 +71,8 @@
                 android:layout_marginTop="4dp">
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/ic_tag"/>
 
                 <TextView
