@@ -7,6 +7,9 @@ import net.jacza.expenses.R;
 
 import java.util.Locale;
 
+/**
+ * The `BalanceFormatter` class provides utility methods for formatting and displaying financial balances in a `TextView`.
+ */
 public class BalanceFormatter {
     public static void setFormattedBalance(TextView textView, double balance, Context context) {
         if (balance >= 0) {

@@ -4,6 +4,11 @@ import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 
+/**
+ * This class is an {@link InputFilter} that limits the number of digits allowed
+ * before and after the decimal point in an input field.
+ * It ensures that the entered text conforms to a specific decimal format.
+ */
 public class DecimalDigitsInputFilter implements InputFilter {
 
     private final int mDigitsBeforeZero;
