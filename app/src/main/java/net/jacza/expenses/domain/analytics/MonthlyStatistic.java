@@ -32,6 +32,7 @@ public class MonthlyStatistic {
     }
 
     public ArrayList<CategoryWithAmount> getCategoriesWithAmount() {
+        categoriesWithAmount.sort((a, b) -> -1 * Double.compare(a.getAMOUNT(), b.getAMOUNT()));
         return categoriesWithAmount;
     }
 
