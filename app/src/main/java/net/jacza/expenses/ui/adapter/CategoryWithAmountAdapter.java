@@ -14,6 +14,16 @@ import net.jacza.expenses.ui.util.BalanceFormatter;
 
 import java.util.List;
 
+/**
+ * {@code CategoryWithAmountAdapter} is a RecyclerView adapter responsible for displaying a list of
+ * {@link CategoryWithAmount} objects. Each item in the RecyclerView represents a category and its
+ * associated amount.
+ * <p>
+ * This adapter utilizes a custom ViewHolder, {@link CategoryWithAmountViewHolder}, to efficiently
+ * manage the views for each item in the list.
+ *
+ * @see CategoryWithAmount
+ */
 public class CategoryWithAmountAdapter extends RecyclerView.Adapter<CategoryWithAmountAdapter.CategoryWithAmountViewHolder> {
     private List<CategoryWithAmount> categoryWithAmounts;
 

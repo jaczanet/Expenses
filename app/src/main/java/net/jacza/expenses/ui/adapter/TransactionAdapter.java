@@ -23,6 +23,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * {@code TransactionAdapter} is a RecyclerView adapter responsible for displaying a list of {@link Transaction} objects.
+ * It manages the layout and presentation of each transaction within a card view, including date, note, category, and amount.
+ * It also handles the corner radius styling of the cards based on their position in the list (first, last, or middle).
+ * <p>
+ * The adapter also supports click events on transactions when the clickable flag is set to true.
+ */
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
     private List<Transaction> transactions;
     private final int cornerRadiusRegular;

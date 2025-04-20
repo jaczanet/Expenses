@@ -2,7 +2,6 @@ package net.jacza.expenses.ui.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +18,19 @@ import net.jacza.expenses.ui.interfaces.OnCategoryClickListener;
 
 import java.util.List;
 
+/**
+ * {@code SelectCategoryAdapter} is a RecyclerView adapter responsible for displaying a list of {@link Category} items
+ * in a selectable manner. It uses pill-shaped buttons to represent each category, allowing the user to select one
+ * category at a time.
+ * <p>
+ * The adapter highlights the selected category with a filled button style and displays unselected categories with an
+ * outlined button style.
+ * </p>
+ *
+ * @see Category
+ * @see OnCategoryClickListener
+ * @see RecyclerView.Adapter
+ */
 public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAdapter.SelectCategoryViewHolder> {
     private List<Category> categoryList;
     private OnCategoryClickListener listener;

@@ -26,6 +26,11 @@ import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.activity.CategoryTransactions;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * {@code CategoryAdapter} is a RecyclerView Adapter responsible for displaying a list of {@link Category} items.
+ * It handles the creation of {@link CategoryViewHolder} objects, binding data to the views, and
+ * managing user interactions like clicking on a category to view its transactions and menu options for editing/deleting.
+ */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
     private List<Category> categoryList;

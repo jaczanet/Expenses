@@ -29,8 +29,12 @@ import net.jacza.expenses.ui.util.BalanceFormatter;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 
+/**
+ * {@code AccountAdapter} is a RecyclerView.Adapter that manages a list of {@link Account} objects.
+ * It is responsible for creating and binding {@link AccountViewHolder}s to display account information in a RecyclerView.
+ * It also handles user interactions like clicking on an account to view its transactions and accessing the account menu for edit/delete options.
+ */
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder> {
 
     private List<Account> accounts;

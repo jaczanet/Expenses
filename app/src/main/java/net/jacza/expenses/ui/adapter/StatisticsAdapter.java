@@ -15,6 +15,14 @@ import net.jacza.expenses.domain.analytics.MonthlyStatistic;
 import java.text.DateFormatSymbols;
 import java.util.List;
 
+/**
+ * {@code StatisticsAdapter} is a RecyclerView Adapter that displays a list of monthly statistics.
+ * Each item in the list represents a month's statistics and contains a nested RecyclerView
+ * to display categories and their associated amounts for that month.
+ *
+ * @see MonthlyStatistic
+ * @see CategoryWithAmountAdapter
+ */
 public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.StatsViewHolder> {
 
     private List<MonthlyStatistic> monthlyStatistics;
@@ -52,7 +60,7 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.St
             int monthNumber = monthlyStatistic.getMONTH();
             String month = new DateFormatSymbols().getMonths()[monthNumber - 1];
 
-            textViewDate.setText( month + " " + monthlyStatistic.getYEAR());
+            textViewDate.setText(month + " " + monthlyStatistic.getYEAR());
 
             CategoryWithAmountAdapter adapter = new CategoryWithAmountAdapter(monthlyStatistic.getCategoriesWithAmount());
             recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
