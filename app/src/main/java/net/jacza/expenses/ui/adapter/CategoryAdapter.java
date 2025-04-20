@@ -65,7 +65,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         holder.menuButton.setOnClickListener(view -> {
             PopupMenu popupMenu = new PopupMenu(view.getContext(), holder.menuButton);
-            popupMenu.inflate(R.menu.category_menu);
+            popupMenu.inflate(R.menu.edit_delete_menu);
             MenuItem deleteItem = popupMenu.getMenu().findItem(R.id.menu_delete);
             SpannableString s = new SpannableString(deleteItem.getTitle());
             s.setSpan(
