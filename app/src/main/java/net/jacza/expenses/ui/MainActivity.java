@@ -62,19 +62,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupEdgeToEdge() {
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
-            return insets;
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(bottomNavigationView, (v, insets) -> {
-            Insets navigationBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
-            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), navigationBars.bottom);
             return insets;
         });
     }
