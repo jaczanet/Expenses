@@ -83,9 +83,9 @@ Time to find out where the money goes.
 
 ### Transactions and statistics
 
-| ![][19] | ![][18] | ![][17] |
-| ------- | ------- | ------- |
-| ![][30] | ![][29] | ![][28] |
+| ![][31] | ![][19] | ![][18] | ![][17] |
+| ------- | ------- | ------- | ------- |
+| ![][32] | ![][30] | ![][29] | ![][28] |
 
 ### Categories
 
@@ -124,3 +124,5 @@ Time to find out where the money goes.
 [28]: docs/screenshots/statistics-activity-dark.png
 [29]: docs/screenshots/transactions-edit-dark.png
 [30]: docs/screenshots/transactions-fragment-dark.png
+[31]: docs/screenshots/icon-md3-you-sample-1.png
+[32]: docs/screenshots/icon-md3-you-sample-2.png
