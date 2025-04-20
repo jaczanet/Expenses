@@ -16,7 +16,7 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
 public class GetStatisticsUseCase {
 
     // defaults
-    private static final ZoneId TIMEZONE = ZoneId.of("Europe/Helsinki");
+    private static final ZoneId TIMEZONE = ZoneId.systemDefault();
 
     // repositories
     private static final Repository<Transaction> TRANSACTION_REPOSITORY =
