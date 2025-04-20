@@ -8,7 +8,8 @@ import net.jacza.expenses.R;
 import java.util.Locale;
 
 /**
- * The `BalanceFormatter` class provides utility methods for formatting and displaying financial balances in a `TextView`.
+ * The `BalanceFormatter` class provides utility methods for formatting and displaying financial balances in a `TextView`
+ * with a specified format (2 decimal places) and color (Expenses-Red and Incomes-Green).
  */
 public class BalanceFormatter {
     public static void setFormattedBalance(TextView textView, double balance, Context context) {
