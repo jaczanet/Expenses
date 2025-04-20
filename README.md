@@ -3,13 +3,14 @@
 <!-- General project description -->
 
 Personal expenses tracking application with a minimalistic yet modern design.
+
 Time to find out where the money goes.
 
 ## Team members
 
 <!-- Division of work among team members -->
 
-- [Jacopo Zanetti][1]: Focus on Data and Domain Layers, and realization of Class diagrams
+- [Jacopo Zanetti][1]: Focus on Data and Domain Layers, realization of Class diagrams
 - [Enerel Tumurkhuu][2]
 - [Gabriel Concepcion][3]
 
