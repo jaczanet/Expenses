@@ -11,8 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.color.DynamicColors;
-
 import net.jacza.expenses.R;
 import net.jacza.expenses.domain.analytics.GetStatisticsUseCase;
 import net.jacza.expenses.ui.adapter.StatisticsAdapter;
