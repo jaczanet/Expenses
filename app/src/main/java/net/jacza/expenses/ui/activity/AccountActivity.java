@@ -19,6 +19,14 @@ import net.jacza.expenses.data.repository.AccountsRepository;
 import net.jacza.expenses.ui.util.DecimalDigitsInputFilter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * AccountActivity: This class is responsible for handling the creation and editing of Account objects.
+ * It provides a user interface to input or modify account details such as the account name and initial balance.
+ * It supports two modes of operation:
+ *  - ADD: Allows the creation of a new Account.
+ *  - EDIT: Allows the modification of an existing Account.
+ * The activity uses the AccountsRepository to persist the changes made to the accounts.
+ */
 public class AccountActivity extends AppCompatActivity {
 
     TextView tvActivityEvent;

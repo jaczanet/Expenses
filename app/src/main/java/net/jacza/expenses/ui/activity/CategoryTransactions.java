@@ -20,6 +20,14 @@ import net.jacza.expenses.ui.adapter.TransactionAdapter;
 import net.jacza.expenses.domain.GetFilteredTransactionsUseCase;
 import net.jacza.expenses.ui.util.MarginTransactionDecoration;
 
+/**
+ * CategoryTransactions Activity
+ *
+ * This activity displays a list of transactions filtered by a specific category.
+ * It receives a Category object as an extra from the previous activity.
+ * It utilizes a RecyclerView to display the transactions and a custom adapter (TransactionAdapter).
+ * It also handles the case where there are no transactions for the selected category.
+ */
 public class CategoryTransactions extends AppCompatActivity {
 
     private RecyclerView recyclerView;

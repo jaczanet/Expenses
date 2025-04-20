@@ -33,6 +33,28 @@ import net.jacza.expenses.ui.interfaces.OnCategoryClickListener;
 import net.jacza.expenses.ui.util.DecimalDigitsInputFilter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * TransactionActivity allows users to add new transactions or edit existing ones.
+ * It provides functionality to select the transaction's amount, date, associated account,
+ * category, and a note.
+ *
+ * <p>
+ * This activity handles both adding a new transaction and editing an existing one
+ * based on the {@link SaveBtnModes} passed in the intent.
+ * </p>
+ *
+ * <p>
+ * <b>Key Features:</b>
+ * <ul>
+ *     <li><b>Add/Edit Transactions:</b> Supports adding new transactions and editing existing ones.</li>
+ *     <li><b>Amount Input:</b> Allows entering the transaction amount with decimal precision.</li>
+ *     <li><b>Date Selection:</b> Provides a date picker to select the transaction date.</li>
+ *     <li><b>Account Selection:</b> Uses an AutoCompleteTextView to select the associated account.</li>
+ *     <li><b>Category Selection:</b> Displays categories in a RecyclerView with a Flexbox layout for easy selection.</li>
+ *     <li><b>Note:</b> Enables adding a note to the transaction.</li>
+ *     <li><b>Validation:</b> Checks for the existence of at least one account and category when adding a new transaction.</li>
+ * </ul>
+ */
 public class TransactionActivity extends AppCompatActivity implements OnCategoryClickListener {
 
     private Button closeBtn;

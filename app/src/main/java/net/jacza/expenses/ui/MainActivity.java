@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private MaterialToolbar topAppBar;
-
-    // Fragment instances
     private TransactionFragment transactionFragment;
     private CategoryFragment categoryFragment;
     private AccountFragment accountFragment;
@@ -109,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    // Fragment getters
     private TransactionFragment getTransactionFragment() {
         if (transactionFragment == null) {
             transactionFragment = new TransactionFragment();

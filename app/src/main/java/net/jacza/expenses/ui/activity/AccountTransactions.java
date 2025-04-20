@@ -20,6 +20,15 @@ import net.jacza.expenses.ui.adapter.TransactionAdapter;
 import net.jacza.expenses.domain.GetFilteredTransactionsUseCase;
 import net.jacza.expenses.ui.util.MarginTransactionDecoration;
 
+/**
+ * AccountTransactions Activity
+ *
+ * This activity displays a list of transactions associated with a specific account.
+ * It retrieves the account details from the intent, filters transactions related to that
+ * account, and displays them in a RecyclerView. It also provides a back button to return
+ * to the previous screen.
+ * It also handles the case where there are no transactions for the selected account.
+ */
 public class AccountTransactions extends AppCompatActivity {
 
     private RecyclerView recyclerView;

@@ -17,6 +17,11 @@ import net.jacza.expenses.R;
 import net.jacza.expenses.domain.analytics.GetStatisticsUseCase;
 import net.jacza.expenses.ui.adapter.StatisticsAdapter;
 
+/**
+ * The StatisticsActivity class is responsible for displaying statistical data in a RecyclerView.
+ * It fetches monthly statistics data using the {@link GetStatisticsUseCase} and displays it
+ * using the {@link StatisticsAdapter}.
+ */
 public class StatisticsActivity extends AppCompatActivity {
     private Button  backBtn;
     private RecyclerView recyclerView;

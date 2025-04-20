@@ -17,6 +17,13 @@ import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * CategoryActivity is responsible for handling the creation and editing of Category objects.
+ * It allows users to add a new category or modify an existing one.
+ * It uses an EditText for category name input, and buttons for saving or closing.
+ * The activity supports two modes: ADD and EDIT, determined by an intent extra.
+ * Also supports deleting a category.
+ */
 public class CategoryActivity extends AppCompatActivity {
 
     Button saveBtn, closeBtn;
