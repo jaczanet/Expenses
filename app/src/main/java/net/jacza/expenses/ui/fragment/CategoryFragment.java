@@ -21,8 +21,14 @@ import net.jacza.expenses.ui.util.SaveBtnModes;
 
 import java.util.List;
 
-public class CategoryFragment extends Fragment {
+/**
+ * CategoryFragment is a Fragment responsible for displaying a list of categories.
+ * It utilizes a RecyclerView with a FlexboxLayoutManager to present categories in a flexible grid.
+ * Users can add new categories via a button, which navigates to the CategoryActivity.
+ * The fragment also handles updating the category list when the view resumes.
+ */
 
+public class CategoryFragment extends Fragment {
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
     private Repository<Category> repo;
