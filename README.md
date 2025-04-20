@@ -78,3 +78,49 @@ Time to find out where the money goes.
 [8]: https://developer.android.com/topic/architecture/data-layer#expose-apis
 
 [![class diagram](./docs/class-diagram.svg)](https://raw.githubusercontent.com/jaczanet/Expenses/96513d620ee8923b46ea1cc3e5fb685a0398f8eb/docs/class-diagram.svg "Open raw")
+
+## Screenshots
+
+### Transactions and statistics
+
+| ![][19] | ![][18] | ![][17] |
+| ------- | ------- | ------- |
+| ![][30] | ![][29] | ![][28] |
+
+### Categories
+
+| ![][15] | ![][13] | ![][14] | ![][16] |
+| ------- | ------- | ------- | ------- |
+| ![][26] | ![][24] | ![][25] | ![][27] |
+
+### Accounts
+
+| ![][11] | ![][9]  | ![][10] | ![][12] |
+| ------- | ------- | ------- | ------- |
+| ![][22] | ![][20] | ![][21] | ![][23] |
+
+[9]: docs/screenshots/accounts-dropdown-menu-light.png
+[10]: docs/screenshots/accounts-edit-light.png
+[11]: docs/screenshots/accounts-fragment-light.png
+[12]: docs/screenshots/accounts-transactions-view-light.png
+[13]: docs/screenshots/categories-dropdown-menu-light.png
+[14]: docs/screenshots/categories-edit-light.png
+[15]: docs/screenshots/categories-fragment-light.png
+[16]: docs/screenshots/categories-transaction-view-light.png
+[17]: docs/screenshots/statistics-activity-light.png
+[18]: docs/screenshots/transactions-edit-light.png
+[19]: docs/screenshots/transactions-fragment-light.png
+
+---
+
+[20]: docs/screenshots/accounts-dropdown-menu-dark.png
+[21]: docs/screenshots/accounts-edit-dark.png
+[22]: docs/screenshots/accounts-fragment-dark.png
+[23]: docs/screenshots/accounts-transactions-view-dark.png
+[24]: docs/screenshots/categories-dropdown-menu-dark.png
+[25]: docs/screenshots/categories-edit-dark.png
+[26]: docs/screenshots/categories-fragment-dark.png
+[27]: docs/screenshots/categories-transaction-view-dark.png
+[28]: docs/screenshots/statistics-activity-dark.png
+[29]: docs/screenshots/transactions-edit-dark.png
+[30]: docs/screenshots/transactions-fragment-dark.png
