@@ -7,7 +7,7 @@ import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 
-/*
+/**
  * Methods to get the list of transactions filtered by category or account.
  */
 public class GetFilteredTransactionsUseCase {

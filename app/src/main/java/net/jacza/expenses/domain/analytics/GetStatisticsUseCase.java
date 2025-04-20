@@ -10,7 +10,7 @@ import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 
-/*
+/**
  * Class exposing methods to compute statistics.
  */
 public class GetStatisticsUseCase {

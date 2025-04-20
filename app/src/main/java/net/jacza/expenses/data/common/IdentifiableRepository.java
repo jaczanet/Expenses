@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import net.jacza.expenses.data.base.Identifiable;
 import net.jacza.expenses.data.base.Repository;
 
-/*
+/**
  * Class defining common logic for repositories of Identifiable objects.
  */
 public abstract class IdentifiableRepository<T extends Identifiable> implements Repository<T> {

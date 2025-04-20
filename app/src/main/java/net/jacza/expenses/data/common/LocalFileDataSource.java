@@ -6,7 +6,7 @@ import net.jacza.expenses.App;
 import net.jacza.expenses.data.base.DataSource;
 import net.jacza.expenses.data.util.TextFileHandler;
 
-/*
+/**
  * Class defining common logic for data sources that directly write and read its own file.
  */
 public abstract class LocalFileDataSource<T> implements DataSource<T> {

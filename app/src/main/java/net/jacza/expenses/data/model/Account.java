@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 import net.jacza.expenses.data.base.Identifiable;
 
-/*
+/**
  * Data class wrapping account data.
  */
 public class Account implements Identifiable, Serializable {

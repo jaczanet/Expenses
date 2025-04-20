@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
+/**
  * Class providing methods for writing and reading a list of strings to and from a file.
  */
 public class TextFileHandler {

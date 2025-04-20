@@ -2,7 +2,7 @@ package net.jacza.expenses.domain.analytics;
 
 import net.jacza.expenses.data.model.Category;
 
-/*
+/**
  * Data class associating a category with a double.
  */
 public class CategoryWithAmount {

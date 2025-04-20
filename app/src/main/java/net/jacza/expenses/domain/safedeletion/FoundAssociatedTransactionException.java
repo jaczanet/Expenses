@@ -3,7 +3,7 @@ package net.jacza.expenses.domain.safedeletion;
 import net.jacza.expenses.data.model.Account;
 import net.jacza.expenses.data.model.Category;
 
-/*
+/**
  * Custom exception for control flow in safe deletion logic.
  */
 public class FoundAssociatedTransactionException extends Exception {

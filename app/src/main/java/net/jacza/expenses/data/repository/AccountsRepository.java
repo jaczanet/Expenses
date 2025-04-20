@@ -11,7 +11,7 @@ import net.jacza.expenses.data.raw.RawTransaction;
 import net.jacza.expenses.data.source.RawAccountsDataSource;
 import net.jacza.expenses.data.source.RawTransactionsDataSource;
 
-/*
+/**
  * Repository class that implements CRUD functionality for Account.
  */
 public class AccountsRepository extends IdentifiableRepository<Account> {

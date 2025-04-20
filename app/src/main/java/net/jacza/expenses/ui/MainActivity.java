@@ -2,7 +2,6 @@ package net.jacza.expenses.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +9,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import net.jacza.expenses.R;
 import net.jacza.expenses.ui.activity.StatisticsActivity;
 import net.jacza.expenses.ui.fragment.AccountFragment;
@@ -52,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             bottomNavigationView.setSelectedItemId(R.id.transactions);
         }
-
-
     }
 
     @Override
@@ -102,9 +97,10 @@ public class MainActivity extends AppCompatActivity {
         if (fragment == null || fragment.isAdded()) return;
 
         currentFragment = fragment;
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentsContainer, fragment)
-                .commit();
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.fragmentsContainer, fragment)
+            .commit();
     }
 
     private TransactionFragment getTransactionFragment() {
@@ -128,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         return accountFragment;
     }
 
-    private void setUpOpenStatisticBtn(){
+    private void setUpOpenStatisticBtn() {
         topAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.stats) {
                 Intent intent = new Intent(this, StatisticsActivity.class);

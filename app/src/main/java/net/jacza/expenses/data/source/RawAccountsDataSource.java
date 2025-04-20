@@ -4,7 +4,7 @@ import java.util.UUID;
 import net.jacza.expenses.data.common.LocalFileDataSource;
 import net.jacza.expenses.data.raw.RawAccount;
 
-/*
+/**
  * Data source of RawAccount, used by the repository layer to gather raw data.
  */
 public class RawAccountsDataSource extends LocalFileDataSource<RawAccount> {

@@ -2,7 +2,7 @@ package net.jacza.expenses.domain.analytics;
 
 import java.util.ArrayList;
 
-/*
+/**
  * Data class wrapping monthly statistics data.
  */
 public class MonthlyStatistic {

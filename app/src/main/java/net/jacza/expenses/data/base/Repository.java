@@ -2,7 +2,7 @@ package net.jacza.expenses.data.base;
 
 import java.util.ArrayList;
 
-/*
+/**
  * Interface defining repository methods for the CRUD design pattern.
  */
 public interface Repository<T> {

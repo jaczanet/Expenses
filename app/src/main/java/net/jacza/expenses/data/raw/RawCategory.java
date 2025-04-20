@@ -3,7 +3,7 @@ package net.jacza.expenses.data.raw;
 import java.util.UUID;
 import net.jacza.expenses.data.model.Category;
 
-/*
+/**
  * Immutable object exposed by the data source layer, providing a Raw version of Category.
  */
 public class RawCategory {

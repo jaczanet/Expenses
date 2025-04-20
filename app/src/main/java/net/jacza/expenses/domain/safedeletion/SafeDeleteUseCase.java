@@ -8,7 +8,7 @@ import net.jacza.expenses.data.repository.AccountsRepository;
 import net.jacza.expenses.data.repository.CategoriesRepository;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 
-/*
+/**
  * Class exposing methods for safe deletion of objects from the repository.
  */
 public class SafeDeleteUseCase {

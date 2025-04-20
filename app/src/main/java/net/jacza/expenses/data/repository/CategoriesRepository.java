@@ -9,7 +9,7 @@ import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.raw.RawCategory;
 import net.jacza.expenses.data.source.RawCategoriesDataSource;
 
-/*
+/**
  * Repository class that implements CRUD functionality for Category.
  */
 public class CategoriesRepository extends IdentifiableRepository<Category> {
