@@ -62,7 +62,7 @@ no permissions required
   - Transactions
   - Accounts -> FlexboxLayout
   - Categories -> FlexboxLayout
-- Sorting:
+- Sorting
   - Transactions by date
   - Accounts and Categories by alphabetical order
 - Menus
@@ -92,7 +92,7 @@ no permissions required
   - Many different [**POJOs**][4] definted according to use case
 - [x] Android's [officially][5] recommended app **architecture**
   - UI Layer
-    - <!-- To Do -->
+    - **UI Elements** (FlexBox Layout, BottomNavigatioView, ...)
   - Domain Layer
     - **UseCases**
   - Data Layer
