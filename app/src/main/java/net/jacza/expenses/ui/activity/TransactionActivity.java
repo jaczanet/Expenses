@@ -18,7 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
+
+import java.util.Calendar;
 import java.util.List;
 import net.jacza.expenses.R;
 import net.jacza.expenses.data.base.Repository;
@@ -159,10 +162,14 @@ public class TransactionActivity extends AppCompatActivity implements OnCategory
     }
 
     private void showDatePicker() {
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        constraintsBuilder.setFirstDayOfWeek(Calendar.MONDAY);
+
         MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select date")
-            .setSelection(getValidDateInMillis())
-            .build();
+                .setTitleText("Select date")
+                .setCalendarConstraints(constraintsBuilder.build())
+                .setSelection(getValidDateInMillis())
+                .build();
 
         datePicker.addOnPositiveButtonClickListener(selection -> {
             selectedDateMillis = selection;
