@@ -12,7 +12,7 @@ Time to find out where the money goes.
 
 - [Jacopo Zanetti][1]: Focus on Data and Domain Layers, realization of Class diagrams
 - [Enerel Tumurkhuu][2]
-- [Gabriel Concepcion][3]
+- [Gabriel Concepcion][3]: Focus on UI Layer (UI Classes and xml files), realization of presentation video
 
 [1]: https://jacza.net/github
 [2]: https://github.com/eenerere/
