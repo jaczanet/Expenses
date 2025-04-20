@@ -14,9 +14,11 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
 public class SafeDeleteUseCase {
 
     // repositories
-    private static final Repository<Transaction> transRepo = TransactionsRepository.getINSTANCE();
-    private static final Repository<Category> categsRepo = CategoriesRepository.getINSTANCE();
-    private static final Repository<Account> accsRepo = AccountsRepository.getINSTANCE();
+    private static final Repository<Transaction> TRANSACTIONS_REPOSITORY =
+        TransactionsRepository.getINSTANCE();
+    private static final Repository<Category> CATEGORIES_REPOSITORY =
+        CategoriesRepository.getINSTANCE();
+    private static final Repository<Account> ACCOUNTS_REPOSITORY = AccountsRepository.getINSTANCE();
 
     // override the constructor to avoid instantiation
     private SafeDeleteUseCase() {}
@@ -24,24 +26,24 @@ public class SafeDeleteUseCase {
     // exposed methods
 
     public static void deleteCategory(Category entry) throws FoundAssociatedTransactionException {
-        var transactions = transRepo.read();
+        var transactions = TRANSACTIONS_REPOSITORY.read();
         for (var tran : transactions) {
             var tranCategID = tran.getCategory().getID();
             if (tranCategID.equals(entry.getID())) {
                 throw new FoundAssociatedTransactionException(entry);
             }
         }
-        categsRepo.delete(entry);
+        CATEGORIES_REPOSITORY.delete(entry);
     }
 
     public static void deleteAccount(Account entry) throws FoundAssociatedTransactionException {
-        var transactions = transRepo.read();
+        var transactions = TRANSACTIONS_REPOSITORY.read();
         for (var tran : transactions) {
             var tranAccID = tran.getAccount().getID();
             if (tranAccID.equals(entry.getID())) {
                 throw new FoundAssociatedTransactionException(entry);
             }
         }
-        accsRepo.delete(entry);
+        ACCOUNTS_REPOSITORY.delete(entry);
     }
 }

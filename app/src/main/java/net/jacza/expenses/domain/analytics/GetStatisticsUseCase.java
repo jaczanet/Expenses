@@ -16,7 +16,7 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
 public class GetStatisticsUseCase {
 
     // repositories
-    private static final Repository<Transaction> TRANSACTION_REPOSITORY =
+    private static final Repository<Transaction> TRANSACTIONS_REPOSITORY =
         TransactionsRepository.getINSTANCE();
 
     // override the constructor to avoid instantiation
@@ -28,7 +28,7 @@ public class GetStatisticsUseCase {
         var monthlyStats = new ArrayList<MonthlyStatistic>();
 
         // load transactions from repository
-        var transactions = TRANSACTION_REPOSITORY.read();
+        var transactions = TRANSACTIONS_REPOSITORY.read();
 
         // iterate over transactions for every year
         var transGroupedByYear = groupTransactionsByYear(transactions);
