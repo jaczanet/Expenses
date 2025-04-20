@@ -10,7 +10,7 @@ Time to find out where the money goes.
 
 <!-- Division of work among team members -->
 
-- [Jacopo Zanetti][1]: Focus on Data and Domain Layers, realization of Class diagrams
+- [Jacopo Zanetti][1]: Focus on Data and Domain Layers, realization of class diagrams and documentation
 - [Enerel Tumurkhuu][2]: Focus on UI Layer (UI Classes and xml files), and UI/UX Design on Figma
 - [Gabriel Concepcion][3]: Focus on UI Layer (UI Classes and xml files), realization of presentation video
 
