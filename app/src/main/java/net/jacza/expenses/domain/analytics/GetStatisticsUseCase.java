@@ -15,9 +15,6 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
  */
 public class GetStatisticsUseCase {
 
-    // defaults
-    private static final ZoneId TIMEZONE = ZoneId.systemDefault();
-
     // repositories
     private static final Repository<Transaction> TRANSACTION_REPOSITORY =
         TransactionsRepository.getINSTANCE();
@@ -80,6 +77,8 @@ public class GetStatisticsUseCase {
     }
 
     // helper functions
+    private static final ZoneId TIMEZONE = ZoneId.systemDefault();
+
     private static HashMap<Integer, ArrayList<Transaction>> groupTransactionsByYear(
         ArrayList<Transaction> transactions
     ) {

@@ -85,7 +85,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 } else if (item.getItemId() == R.id.menu_delete) {
                     // Delete the account
                     try {
-                        SafeDeleteUseCase.category(category);
+                        SafeDeleteUseCase.deleteCategory(category);
                         notifyCategoryRemoved(position, view);
                         setList(repository.read());
                     } catch (FoundAssociatedTransactionException e) {

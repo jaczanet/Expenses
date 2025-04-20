@@ -83,7 +83,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
                     return true;
                 } else if (item.getItemId() == R.id.menu_delete) {
                     try{
-                        SafeDeleteUseCase.account(account);
+                        SafeDeleteUseCase.deleteAccount(account);
                         notifyAccountRemoved(position, view);
                         setList(repo.read());
                     }catch (FoundAssociatedTransactionException e){

@@ -23,7 +23,7 @@ public class SafeDeleteUseCase {
 
     // exposed methods
 
-    public static void category(Category entry) throws FoundAssociatedTransactionException {
+    public static void deleteCategory(Category entry) throws FoundAssociatedTransactionException {
         var transactions = transRepo.read();
         for (var tran : transactions) {
             var tranCategID = tran.getCategory().getID();
@@ -34,7 +34,7 @@ public class SafeDeleteUseCase {
         categsRepo.delete(entry);
     }
 
-    public static void account(Account entry) throws FoundAssociatedTransactionException {
+    public static void deleteAccount(Account entry) throws FoundAssociatedTransactionException {
         var transactions = transRepo.read();
         for (var tran : transactions) {
             var tranAccID = tran.getAccount().getID();
