@@ -60,7 +60,13 @@ Time to find out where the money goes.
   - UI Layer
     - **Activities** and **Fragments**
     - **FlexBox Layouts** with **Recycler Views**
-    - **UI Elements** (navigation bar, tool bar, material cardviews, dropdown menus)
+    - **UI Elements**
+      - Navigation Bar
+      - Tool Bar
+      - Material CardViews
+      - Dropdown Menus
+      - Date Picker
+      - Material Buttons
   - Domain Layer
     - **UseCases**
   - Data Layer
@@ -76,6 +82,8 @@ Time to find out where the money goes.
 [6]: https://developer.android.com/topic/architecture/data-layer#source-of-truth
 [7]: https://developer.android.com/topic/architecture#unidirectional-data-flow
 [8]: https://developer.android.com/topic/architecture/data-layer#expose-apis
+
+### Class Diagram
 
 [![class diagram](./docs/class-diagram.svg)](https://raw.githubusercontent.com/jaczanet/Expenses/96513d620ee8923b46ea1cc3e5fb685a0398f8eb/docs/class-diagram.svg "Open raw")
 
@@ -110,9 +118,6 @@ Time to find out where the money goes.
 [17]: docs/screenshots/statistics-activity-light.png
 [18]: docs/screenshots/transactions-edit-light.png
 [19]: docs/screenshots/transactions-fragment-light.png
-
----
-
 [20]: docs/screenshots/accounts-dropdown-menu-dark.png
 [21]: docs/screenshots/accounts-edit-dark.png
 [22]: docs/screenshots/accounts-fragment-dark.png
