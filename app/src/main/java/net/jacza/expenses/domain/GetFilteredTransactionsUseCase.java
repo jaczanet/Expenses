@@ -10,12 +10,12 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
 /*
  * Methods to get the list of transactions filtered by category or account.
  */
-public class GetTransactions {
+public class GetTransactionsUseCase {
 
     private static final Repository<Transaction> transRepo = TransactionsRepository.getINSTANCE();
 
     // override the constructor to avoid instantiation
-    private GetTransactions() {}
+    private GetTransactionsUseCase() {}
 
     // static methods
     public static ArrayList<Transaction> byCategory(Category entry) {
