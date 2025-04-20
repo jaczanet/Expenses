@@ -8,22 +8,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.color.DynamicColors;
 
 import net.jacza.expenses.R;
-import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.activity.StatisticsActivity;
 import net.jacza.expenses.ui.fragment.AccountFragment;
 import net.jacza.expenses.ui.fragment.CategoryFragment;
 import net.jacza.expenses.ui.fragment.TransactionFragment;
-import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * MainActivity is the main entry point for the application.
+ * It manages the bottom navigation, top app bar, and fragment loading.
+ * This activity handles the display of different sections of the app
+ * including Transactions, Categories, and Accounts. It also provides
+ * navigation to the Statistics activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
