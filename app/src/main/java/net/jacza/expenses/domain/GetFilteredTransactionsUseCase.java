@@ -1,4 +1,4 @@
-package net.jacza.expenses.ui.util;
+package net.jacza.expenses.domain;
 
 import java.util.ArrayList;
 import net.jacza.expenses.data.base.Repository;
@@ -10,21 +10,21 @@ import net.jacza.expenses.data.repository.TransactionsRepository;
 /*
  * Methods to get the list of transactions filtered by category or account.
  */
-public class GetTransactionsUseCase {
+public class GetFilteredTransactionsUseCase {
 
     private static final Repository<Transaction> transRepo = TransactionsRepository.getINSTANCE();
 
     // override the constructor to avoid instantiation
-    private GetTransactionsUseCase() {}
+    private GetFilteredTransactionsUseCase() {}
 
     // static methods
-    public static ArrayList<Transaction> byCategory(Category entry) {
+    public static ArrayList<Transaction> filterByCategory(Category entry) {
         var transactions = transRepo.read();
         transactions.removeIf(item -> !item.getCategory().getID().equals(entry.getID()));
         return transactions;
     }
 
-    public static ArrayList<Transaction> byAccount(Account entry) {
+    public static ArrayList<Transaction> filterByAccount(Account entry) {
         var transactions = transRepo.read();
         transactions.removeIf(item -> !item.getAccount().getID().equals(entry.getID()));
         return transactions;

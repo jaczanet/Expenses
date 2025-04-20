@@ -17,7 +17,7 @@ import net.jacza.expenses.data.model.Category;
 import net.jacza.expenses.data.model.Transaction;
 import net.jacza.expenses.data.repository.TransactionsRepository;
 import net.jacza.expenses.ui.adapter.TransactionAdapter;
-import net.jacza.expenses.ui.util.GetTransactions;
+import net.jacza.expenses.domain.GetFilteredTransactionsUseCase;
 import net.jacza.expenses.ui.util.MarginTransactionDecoration;
 
 public class CategoryTransactions extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class CategoryTransactions extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new MarginTransactionDecoration(10));
 
-        ArrayList<Transaction> transactions = GetTransactions.byCategory(category);
+        ArrayList<Transaction> transactions = GetFilteredTransactionsUseCase.filterByCategory(category);
         adapter.setList(transactions);
 
         event = findViewById(R.id.textViewEvent);
