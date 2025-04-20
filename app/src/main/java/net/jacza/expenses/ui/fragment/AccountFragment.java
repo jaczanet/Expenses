@@ -19,6 +19,12 @@ import net.jacza.expenses.ui.activity.AccountActivity;
 import net.jacza.expenses.ui.adapter.AccountAdapter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * AccountFragment is a Fragment responsible for displaying a list of accounts.
+ * It utilizes a RecyclerView with a FlexboxLayoutManager to present accounts in a flexible grid.
+ * Users can add new accounts via a button, which navigates to the AccountActivity.
+ * The fragment also handles updating the account list when the view resumes.
+ */
 public class AccountFragment extends Fragment {
 
     private RecyclerView recyclerView;

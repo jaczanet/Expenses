@@ -22,6 +22,12 @@ import net.jacza.expenses.ui.adapter.TransactionAdapter;
 import net.jacza.expenses.ui.util.MarginTransactionDecoration;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+/**
+ * The TransactionFragment class is a Fragment that displays a list of transactions in a RecyclerView.
+ * It allows users to swipe transactions to delete them and provides an undo option.
+ * Users can add new accounts via a button, which navigates to the AccountActivity.
+ * The fragment also handles updating the category list when the view resumes.
+ */
 public class TransactionFragment extends Fragment {
 
     private RecyclerView recyclerView;
