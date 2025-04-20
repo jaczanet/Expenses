@@ -19,11 +19,14 @@ import net.jacza.expenses.ui.activity.CategoryActivity;
 import net.jacza.expenses.ui.adapter.CategoryAdapter;
 import net.jacza.expenses.ui.util.SaveBtnModes;
 
+import java.util.List;
+
 public class CategoryFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private CategoryAdapter adapter;
-    Repository<Category> repo;
+    private Repository<Category> repo;
+    private List<Category> categories;
 
     @Override
     public View onCreateView(
@@ -55,7 +58,8 @@ public class CategoryFragment extends Fragment {
         layoutManager.setFlexWrap(FlexWrap.WRAP);
 
         repo = CategoriesRepository.getINSTANCE();
-        adapter = new CategoryAdapter((repo.read()));
+        categories = repo.read();
+        adapter = new CategoryAdapter(categories);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
