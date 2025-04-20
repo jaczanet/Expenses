@@ -114,13 +114,9 @@ public class TransactionFragment extends Fragment {
                             new Snackbar.Callback() {
                                 @Override
                                 public void onDismissed(Snackbar snackbar, int event) {
-                                    if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
+                                    if (event != Snackbar.Callback.DISMISS_EVENT_ACTION && getContext() != null) {
                                         repo.delete(deletedTransaction);
-                                        Toast.makeText(
-                                            requireContext(),
-                                            "Deleted Transaction: " + deletedTransaction.getNote(),
-                                            Toast.LENGTH_SHORT
-                                        ).show();
+                                        Toast.makeText(requireContext(), "Deleted Transaction: " + deletedTransaction.getNote(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }
