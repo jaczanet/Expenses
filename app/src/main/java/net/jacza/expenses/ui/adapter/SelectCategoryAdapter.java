@@ -44,13 +44,10 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
 
         holder.bind(category);
         boolean isSelected = category.getID().equals(selectedCategory.getID());
-        Log.d("SelectCategoryAdapter", "Selected ID: " + selectedCategory.getID());
-        Log.d("SelectCategoryAdapter", "Current ID: " + category.getID());
         int colorPrimary = getThemeColor(context, com.google.android.material.R.attr.colorPrimary);
         int colorOnPrimary = getThemeColor(context, com.google.android.material.R.attr.colorOnPrimary);
 
         if (isSelected) {
-
             // Filled button style
             holder.categoryButton.setBackgroundTintList(ColorStateList.valueOf(colorPrimary));
             holder.categoryButton.setTextColor(colorOnPrimary);
@@ -70,7 +67,11 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
             Category previous = selectedCategory;
             selectedCategory = category;
 
-            notifyItemChanged(categoryList.indexOf(previous));
+            int previousIndex = getCategoryIndexById(previous.getID());
+            if (previousIndex != -1) {
+                notifyItemChanged(previousIndex);
+            }
+
             notifyItemChanged(holder.getAdapterPosition());
         });
     }
@@ -83,6 +84,17 @@ public class SelectCategoryAdapter extends RecyclerView.Adapter<SelectCategoryAd
     public void setSelectedCategory(Category category) {
         this.selectedCategory = category;
     }
+
+    private int getCategoryIndexById(java.util.UUID id) {
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getID().equals(id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
 
 
     static class SelectCategoryViewHolder extends RecyclerView.ViewHolder {

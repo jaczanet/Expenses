@@ -42,7 +42,7 @@ public class AccountTransactions extends AppCompatActivity {
         backBtn.setOnClickListener(v -> finish());
 
         Repository<Transaction> repository = TransactionsRepository.getINSTANCE();
-        adapter = new TransactionAdapter(repository.read(), this);
+        adapter = new TransactionAdapter(repository.read(), false,this);
 
         Account account = (Account) getIntent().getSerializableExtra("Account");
 

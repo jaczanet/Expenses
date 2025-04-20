@@ -27,13 +27,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     private List<Transaction> transactions;
     private final int cornerRadiusRegular;
     private final int cornerRadiusLarge;
+    private static boolean clickable;
 
-    public TransactionAdapter(List<Transaction> transactions, Context context) {
+    public TransactionAdapter(List<Transaction> transactions, Boolean clickable, Context context) {
         this.transactions = transactions;
         this.cornerRadiusRegular = context.getResources()
                 .getDimensionPixelSize(R.dimen.corner_radius_regular);
         this.cornerRadiusLarge = context.getResources()
                 .getDimensionPixelSize(R.dimen.corner_radius_large);
+        TransactionAdapter.clickable = clickable;
     }
 
     @NonNull
@@ -127,14 +129,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             double amount = transaction.getAmount();
             BalanceFormatter.setFormattedBalance(tvAmount, amount, itemView.getContext());
 
-
-            // Set OnClickListener for the entire card
-            itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(itemView.getContext(), TransactionActivity.class);
-                intent.putExtra("MODE", SaveBtnModes.EDIT);
-                intent.putExtra("TRANSACTION TO EDIT", transaction);
-                itemView.getContext().startActivity(intent);
-            });
+            if(clickable) {
+                // Set OnClickListener for the entire card
+                itemView.setOnClickListener(v -> {
+                    Intent intent = new Intent(itemView.getContext(), TransactionActivity.class);
+                    intent.putExtra("MODE", SaveBtnModes.EDIT);
+                    intent.putExtra("TRANSACTION TO EDIT", transaction);
+                    itemView.getContext().startActivity(intent);
+                });
+            }
         }
 
         // Make these methods non-static

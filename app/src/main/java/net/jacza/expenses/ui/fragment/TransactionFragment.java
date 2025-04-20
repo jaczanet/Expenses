@@ -37,8 +37,8 @@ public class TransactionFragment extends Fragment {
     ) {
         View rootView = inflater.inflate(R.layout.fragment_transaction, container, false);
 
-        transactions = repo.read(); // Initialize the transactions list here
-        adapter = new TransactionAdapter(transactions, requireContext()); // Pass the initialized list to the adapter
+        transactions = repo.read();
+        adapter = new TransactionAdapter(transactions, true, requireContext());
         recyclerView = rootView.findViewById(R.id.transactionsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
