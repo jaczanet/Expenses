@@ -22,55 +22,21 @@ Time to find out where the money goes.
 
 <!-- Implemented features -->
 
-- Material Design 3
-- Material You
-
-  - Application Icon and Activies buttons change according to theme
-
-- Transactions
-
-  - Different colors to differentiate Expenses and Incomes
-
-100% offline
-privacy respecting
-no permissions required
-
-- Data is saved locally and ever leaves your device.
-
-- CRUD - Create Read Update Delete
-  - Add transaction / account / category
-  - Edit transaction / account / category
-  - Delete transaction / account / category
-- Colors
-  - Implementation of Mateial You
-    - Application Icon
-    - All icons
-  - Different colors to differentiate Expenses and Incomes
-- Activities
-  - Main activity
-    - Navigation bar
-    - Tool bar
-  - Adding new transaction / account / category
-  - Editing new transaction / account / category
-  - Statistics
-  - Transactions filtered by account / category
-- Fragments
-  - Transactions page
-  - Accounts page
-  - Categories page
-- Recycler View for all cards
-  - Transactions
-  - Accounts -> FlexboxLayout
-  - Categories -> FlexboxLayout
-- Sorting
-  - Transactions by date
-  - Accounts and Categories by alphabetical order
-- Menus
-  - Dropdown menus
-  - Navigation bar menu
-  - Tool bar menu
-- Statistics
-  - Mounthly statistics for categories
+- Material Design 3.
+- Material You dynamic colors, in icons and UI elements.
+- 100% offline, data is saved locally and never leaves your device.
+- Privacy respecting, no permissions required.
+- Track your transactions details:
+  - Date,
+  - Amount,
+  - Note,
+  - Category,
+  - Account.
+- Follow your account balances, whether starting from zero or an existing balance.
+- Monthly statistics based on transaction categories.
+- Sensible colors to differentiate expenses and incomes.
+- Filter transactions per category or account.
+- Sensible presentation of data with built-in sorting logic.
 
 ## Compliance with project requirements
 
@@ -92,7 +58,9 @@ no permissions required
   - Many different [**POJOs**][4] definted according to use case
 - [x] Android's [officially][5] recommended app **architecture**
   - UI Layer
-    - **UI Elements** (FlexBox Layout, BottomNavigationView, ...)
+    - **Activities** and **Fragments**
+    - **FlexBox Layouts** with **Recycler Views**
+    - **UI Elements** (navigation bar, tool bar, material cardviews, dropdown menus)
   - Domain Layer
     - **UseCases**
   - Data Layer
@@ -101,7 +69,7 @@ no permissions required
 - [x] Android architectural principles
   - [**Unidirectional Data Flow**][7]
   - [**Single Source of Truth**][6]
-  - [_One-shot_ **CRUD** APIs][8] defined in the Data Layer
+  - [_One-shot_ **CRUD** APIs][8] exposed by the Data Layer
 
 [4]: https://en.wikipedia.org/wiki/Plain_old_Java_object
 [5]: https://developer.android.com/topic/architecture#recommended-app-arch
