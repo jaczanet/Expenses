@@ -92,7 +92,7 @@ no permissions required
   - Many different [**POJOs**][4] definted according to use case
 - [x] Android's [officially][5] recommended app **architecture**
   - UI Layer
-    - **UI Elements** (FlexBox Layout, BottomNavigatioView, ...)
+    - **UI Elements** (FlexBox Layout, BottomNavigationView, ...)
   - Domain Layer
     - **UseCases**
   - Data Layer
