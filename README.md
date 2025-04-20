@@ -10,9 +10,9 @@ Time to find out where the money goes.
 
 <!-- Division of work among team members -->
 
-- [Jacopo Zanetti][1]: Focus on Data and Domain Layers, realization of class diagrams and documentation
-- [Enerel Tumurkhuu][2]: Focus on UI Layer (UI Classes and xml files), and UI/UX Design on Figma
-- [Gabriel Concepcion][3]: Focus on UI Layer (UI Classes and xml files), realization of presentation video
+- [Jacopo Zanetti][1]: Focus on Data and Domain Layers, realization of class diagrams and documentation.
+- [Enerel Tumurkhuu][2]: Focus on UI Layer (UI Classes and xml files), and UI/UX Design on Figma.
+- [Gabriel Concepcion][3]: Focus on UI Layer (UI Classes and xml files), realization of presentation video.
 
 [1]: https://jacza.net/github
 [2]: https://github.com/eenerere/
@@ -40,7 +40,7 @@ Time to find out where the money goes.
 
 ## Compliance with project requirements
 
-- [x] English-only codebase.
+- [x] English-only codebase
 - [x] 100% Java, support Android 10 or higher
 - [x] Make extensive use of Java's rich type system
   - **Abstract** classes
@@ -85,26 +85,26 @@ Time to find out where the money goes.
 
 ### Class Diagram
 
-[![class diagram](./docs/class-diagram.svg)](https://raw.githubusercontent.com/jaczanet/Expenses/96513d620ee8923b46ea1cc3e5fb685a0398f8eb/docs/class-diagram.svg "Open raw")
+##### Modifiers Convention
+
+- Abstract : _Italics_
+- Static : <ins>Underlined</ins>
+- Final : ALL_CAPS
+
+[![class diagram](docs/class-diagram.svg)](https://raw.githubusercontent.com/jaczanet/Expenses/refs/heads/main/docs/class-diagram.svg "Open fullscreen")
+
+Click on the diagram to open it full-screen. Tip: You may zoom out to gain a broad overview.
 
 ## Screenshots
 
-### Transactions and statistics
-
 | ![][31] | ![][19] | ![][18] | ![][17] |
 | ------- | ------- | ------- | ------- |
-| ![][32] | ![][30] | ![][29] | ![][28] |
-
-### Categories
-
 | ![][15] | ![][13] | ![][14] | ![][16] |
+| ![][11] | ![][9]  | ![][10] | ![][12] |
+
+| ![][32] | ![][30] | ![][29] | ![][28] |
 | ------- | ------- | ------- | ------- |
 | ![][26] | ![][24] | ![][25] | ![][27] |
-
-### Accounts
-
-| ![][11] | ![][9]  | ![][10] | ![][12] |
-| ------- | ------- | ------- | ------- |
 | ![][22] | ![][20] | ![][21] | ![][23] |
 
 [9]: docs/screenshots/accounts-dropdown-menu-light.png
